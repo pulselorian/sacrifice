@@ -1,0 +1,42 @@
+<%- include('../views/partials/header'); %>
+<main>
+    <center>
+        <div style="height: 50px; border: solid 1px black; margin: 1%; background-color: black; color: white;">Pulselorian.com</div>
+        <h3>The Sacrifice Lead</h3>
+        <div class="dataTableContainer">
+            <table id="datatable" class="display compact" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>address</th>
+                        <th>amount</th>
+                        <th>token</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0; i < data.length; i++) { %>
+                    <tr>
+                        <td><%= data[i].from %></td>
+                        <td><%= data[i].value %></td>
+                        <td><%= data[i].token %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table> 
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        
+        <script>
+            $(document).ready(function() {
+                $('#datatable').DataTable({
+                    "pageLength": 10
+                });
+            } );
+        </script>
+    </center>
+</main>
+<%- include('../views/partials/footer'); %>

@@ -1,0 +1,11 @@
+body {
+    background: rgb(151,170,219);
+    background: linear-gradient(0deg, rgba(151,170,219,1) 0%, rgba(223,194,222,1) 23%, rgba(223,218,223,1) 46%, rgba(211,187,217,1) 71%, rgba(118,128,228,1) 100%);
+}
+.dataTableContainer {
+    box-shadow: 2px 2px 10px 2px rgb(83, 83, 83);
+    border-radius: 6px;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 90%, rgb(204, 204, 204) 100%);
+    padding: 10px; margin-left: 4%; margin-right: 4%;
+}
