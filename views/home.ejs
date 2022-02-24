@@ -1,10 +1,12 @@
 <%- include('../views/partials/header'); %>
 <main>
     <center>
-        <div style="height: 50px; border: solid 1px black; margin: 1%; background-color: black; color: white;">Pulselorian.com</div>
+        <img class="banner" src="/uploads/landscape.jpeg">
+        <p></p>
         <h3>The Sacrifice Lead</h3>
+        <p>
         <div class="dataTableContainer">
-            <table id="datatable" class="display compact" style="width:100%">
+            <table id="datatable" class="display compact table table-hover table-dark table-striped table-responsive">
                 <thead>
                     <tr>
                         <th>address</th>
@@ -30,7 +32,7 @@
         <br />
         <br />
         
-        <script>
+        <script>         
             $(document).ready(function() {
                 $('#datatable').DataTable({
                     "pageLength": 10
