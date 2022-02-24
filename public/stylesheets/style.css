@@ -1,7 +1,8 @@
 body {
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgb(21, 3, 36) 100%);
-    color: white;
+    color: white !important;
+    font-family: Anonymous Pro !important; 
 }
 
 .dataTableContainer {
@@ -29,4 +30,12 @@ body {
 
 select {
     color: white;
+}
+
+input {
+    color: white;
+}
+
+td {
+    background-color: black !important;
 }
