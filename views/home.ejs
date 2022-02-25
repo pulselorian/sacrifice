@@ -74,12 +74,10 @@
                     <% for (var i=0; i < data.length; i++) { %>
                     <tr>
                         <td id="<%= data[i].from %>" style="font-size: 14px;" onclick="copyToClipboard('<%= data[i].from %>')">
-                            <div style="display: block;">
-                            <%= data[i].from %> 
+                            <%= data[i].from %>   
                             <a href="#" data-tooltip="copy address." class="customdata">
                                 <i class="fa-solid fa-copy" style="color: grey;"></i>
                             </a>
-                            </div>
                         </td>
                         <td style="font-weight: bold; font-size: larger;"><%= numeral(data[i].value).format("0,000.00") %></td>
                         <td style="color: rgb(202, 202, 202);"><img style="width: 20px;" src="/uploads/SVG-icons/<%= data[i].token.toLowerCase() %>.svg"> <%= data[i].token %></td>

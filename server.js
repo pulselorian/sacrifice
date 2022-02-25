@@ -3,12 +3,14 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const numeral = require('numeral');
+var forceSsl = require('force-ssl-heroku');
 
 app.locals.numeral = numeral;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(forceSsl);
 
 app.use("/", require("./routes/index.js"));
 
