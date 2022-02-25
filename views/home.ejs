@@ -1,12 +1,12 @@
 <%- include('../views/partials/header'); %>
-<main>
+<main style="height:100%;">
     <center>
-        <img class="banner" src="/uploads/landscape.jpeg">
+        <a href="https://pulselorian.com"><img class="banner" src="/uploads/landscape.jpeg"></a>
         <p></p>
-        <h3>The Sacrifice Lead</h3>
+        <h3 style="color: rgb(215, 184, 240);">The Sacrifice Lead</h3>
         <p>
         <div class="dataTableContainer">
-            <table id="datatable" class="display compact table table-hover table-dark table-striped table-responsive">
+            <table id="datatable" class="display compact table table-hover table-dark table-striped table-responsive" style="width: 100%;">
                 <thead>
                     <tr>
                         <th>address</th>
@@ -17,27 +17,41 @@
                 <tbody>
                     <% for (var i=0; i < data.length; i++) { %>
                     <tr>
-                        <td><%= data[i].from %></td>
+                        <td id="<%= data[i].from %>" style="width:350px; font-size: 14px; text-align:center" onclick="copyToClipboard('<%= data[i].from %>')">
+                            <div style="display: inline-block;">
+                            <%= data[i].from %> 
+                            <a href="#" data-tooltip="copy address." class="customdata">
+                                <i class="fa-solid fa-copy" style="color: grey;"></i>
+                            </a>
+                            </div>
+                        </td>
                         <td style="font-weight: bold; font-size: larger;"><%= numeral(data[i].value).format("0,000.00") %></td>
-                        <td style="color: rgb(215, 184, 240);"><%= data[i].token %></td>
+                        <td style="color: rgb(202, 202, 202);"><img style="width: 20px;" src="/uploads/SVG-icons/<%= data[i].token.toLowerCase() %>.svg"> <%= data[i].token %></td>
                     </tr>
                     <% } %>
                 </tbody>
             </table> 
         </div>
         <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        
+        <br />      
         <script>         
             $(document).ready(function() {
                 $('#datatable').DataTable({
-                    "pageLength": 10
+                    "pageLength": 10,
+                    "scrollY": 400,
+                    "scrollX": true,
+                    "order": [[ 1, "desc" ]]
                 });
             } );
+
+            function copyToClipboard(id){
+                var r = document.createRange();
+                r.selectNode(document.getElementById(id));
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(r);
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+            }
         </script>
     </center>
 </main>
