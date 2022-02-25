@@ -24,11 +24,11 @@
         <hr style="width: 80%;"/>
         <div class="gridWrap">
             <div class="gridCol">
-                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdc.svg"> $ <%= numeral(totalUSDCSacrificed).format('0,000.00')  %></p>
-                <p><img style="width: 20px;" src="/uploads/SVG-icons/dai.svg"> $ <%= numeral(totalDAISacrificed).format('0,000.00')  %></p>
-                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdt.svg"> $ <%= numeral(totalUSDTSacrificed).format('0,000.00')  %></p>
-                <p><img style="width: 20px;" src="/uploads/SVG-icons/busd.svg"> $ <%= numeral(totalBUSDSacrificed).format('0,000.00')  %></p>
-                <p><img style="width: 20px;" src="/uploads/SVG-icons/tusd.svg"> $ <%= numeral(totalTUSDSacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdc.svg"> USDC $ <%= numeral(totalUSDCSacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/dai.svg"> DAI $ <%= numeral(totalDAISacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdt.svg"> USDT $ <%= numeral(totalUSDTSacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/busd.svg"> BUSD $ <%= numeral(totalBUSDSacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/tusd.svg"> TUSD $ <%= numeral(totalTUSDSacrificed).format('0,000.00')  %></p>
             </div>
             <div class="gridCol" style="width: 250px;">
                 <canvas id="pie-chart"></canvas>
@@ -65,14 +65,16 @@
             <table id="datatable" class="display compact table table-hover table-dark table-striped table-responsive" style="width: 100%;">
                 <thead>
                     <tr>
-                        <th>address</th>
-                        <th>amount</th>
-                        <th>token</th>
+                        <!-- <th>Details</th> -->
+                        <th>Address</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for (var i=0; i < data.length; i++) { %>
                     <tr>
+                        <!-- <td className="details-control" orderable="false" defaultContent="" data=null></td> -->
+                        <!-- <td className="details-control" orderable="false" style="color: rgb(202, 202, 202);" data="null"></td> -->
                         <td id="<%= data[i].from %>" style="font-size: 14px;" onclick="copyToClipboard('<%= data[i].from %>')">
                             <div style="display: block;">
                             <%= data[i].from %> 
@@ -82,8 +84,20 @@
                             </div>
                         </td>
                         <td style="font-weight: bold; font-size: larger;"><%= numeral(data[i].value).format("0,000.00") %></td>
-                        <td style="color: rgb(202, 202, 202);"><img style="width: 20px;" src="/uploads/SVG-icons/<%= data[i].token.toLowerCase() %>.svg"> <%= data[i].token %></td>
                     </tr>
+                
+                    <% for (var j=0; j < data[i].transactions.length; j++) { %>
+                        <tr>
+                            <td style="color: yellow; font-size: 10px;"> 
+                                <a href="https://<%= data[i].transactions[j].scansite %>.com/tx/<%= data[i].transactions[j].trasactionHash %>" data-tooltip="Transaction details" class="customdata" target="_blank">
+                                    See transaction details here
+                                </a>
+                            </td>
+                            <td style="color: yellow; font-size: 10px;"><%= new Date(data[i].transactions[j].timestamp) %></td>
+                            <td style="color: yellow; font-size: 10px;"><%= numeral(data[i].transactions[j].value).format("0,000.00") %></td>
+                            <td style="color: rgb(202, 202, 202);"><img style="width: 20px;" src="/uploads/SVG-icons/<%= data[i].transactions[j].token.toLowerCase() %>.svg"> <%= data[i].transactions[j].token %></td>
+                        </tr>
+                        <% } %>
                     <% } %>
                 </tbody>
             </table> 
@@ -92,14 +106,57 @@
         <br />      
         <script>         
             $(document).ready(function() {
-                $('#datatable').DataTable({
-                    "pageLength": 10,
+                var table = $('#datatable').DataTable({
+                    "pageLength": 25,
                     "scrollY": 400,
                     "scrollX": true,
-                    "order": [[ 1, "desc" ]]
+                    "order": []
+                    // ,"order": [[ 1, "desc" ]]
                 });
-            } );
 
+                // // Add event listener for opening and closing details
+                // $('#datatable tbody').on('click', 'td.details-control', function(){
+                //     var tr = $(this).closest('tr');
+                //     var row = table.row( tr );
+
+                //     if(row.child.isShown()){
+                //         // This row is already open - close it
+                //         row.child.hide();
+                //         tr.removeClass('shown');
+                //     } else {
+                //         // Open this row
+                //         row.child(format(row.data())).show();
+                //         tr.addClass('shown');
+                //     }
+                // });
+
+                // // Handle click on "Expand All" button
+                // $('#btn-show-all-children').on('click', function(){
+                //     // Enumerate all rows
+                //     table.rows().every(function(){
+                //         // If row has details collapsed
+                //         if(!this.child.isShown()){
+                //             // Open this row
+                //             this.child(format(this.data())).show();
+                //             $(this.node()).addClass('shown');
+                //         }
+                //     });
+                // });
+
+                // // Handle click on "Collapse All" button
+                // $('#btn-hide-all-children').on('click', function(){
+                //     // Enumerate all rows
+                //     table.rows().every(function(){
+                //         // If row has details expanded
+                //         if(this.child.isShown()){
+                //             // Collapse row details
+                //             this.child.hide();
+                //             $(this.node()).removeClass('shown');
+                //         }
+                //     });
+                // });
+            } );
+           
             function copyToClipboard(id){
                 var r = document.createRange();
                 r.selectNode(document.getElementById(id));
