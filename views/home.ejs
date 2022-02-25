@@ -76,12 +76,10 @@
                         <!-- <td className="details-control" orderable="false" defaultContent="" data=null></td> -->
                         <!-- <td className="details-control" orderable="false" style="color: rgb(202, 202, 202);" data="null"></td> -->
                         <td id="<%= data[i].from %>" style="font-size: 14px;" onclick="copyToClipboard('<%= data[i].from %>')">
-                            <div style="display: block;">
-                            <%= data[i].from %> 
+                            <%= data[i].from %>   
                             <a href="#" data-tooltip="copy address." class="customdata">
                                 <i class="fa-solid fa-copy" style="color: grey;"></i>
                             </a>
-                            </div>
                         </td>
                         <td style="font-weight: bold; font-size: larger;"><%= numeral(data[i].value).format("0,000.00") %></td>
                     </tr>
@@ -103,7 +101,8 @@
             </table> 
         </div>
         <br />
-        <br />      
+        <br /> 
+        <p style="padding: 20px;">Access our <a href="/api">API</a></p>     
         <script>         
             $(document).ready(function() {
                 var table = $('#datatable').DataTable({

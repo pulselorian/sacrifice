@@ -138,4 +138,8 @@ router.get('/', (req, res) => {
     res.render('home', { data: sacrificers });
 });
 
+router.get('/api', (req, res) => {
+    res.json({ data: sacrificers });
+});
+
 module.exports = router;
