@@ -8,13 +8,11 @@ body {
 }
 
 .dataTableContainer {
-    box-shadow: 2px 2px 10px 2px rgb(37, 34, 44);
+    box-shadow: 2px 2px 10px 2px rgb(70, 67, 75);
     border-radius: 6px;
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(55, 55, 55, 1) 100%);
-    padding: 10px;
-    margin-left: 4%;
-    margin-right: 4%;
+    padding: 4px;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .banner {
@@ -25,12 +23,13 @@ body {
     padding: 10px;
     margin-left: 4%;
     margin-right: 4%;
-    width: 500px;
+    width: 50%;
+    height: 80px;
 }
 
 #datatable_wrapper {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(55, 55, 55, 1) 100%);
+    /* background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(55, 55, 55, 1) 100%); */
     color: white;
 }
 
@@ -41,17 +40,28 @@ body {
 }
 
 input {
-    color: white;
+    color: rgb(163, 163, 163);
 }
 
 select {
     color: white;
 }
 
+label {
+    color: rgb(163, 163, 163);
+}
+
+.dataTables_info {
+    color: rgb(163, 163, 163) !important;
+}
+
+.dataTables_paginate paging_simple_numbers{
+    color: rgb(163, 163, 163) !important;
+}
 
 td {
     background-color: black !important;
-    border: 1px solid #444444 !important;
+    border: 0.5px solid #252525 !important;
 }
 
 /* tooltip */
@@ -73,3 +83,20 @@ td {
     font-size: 12px;
     border-radius: 5px;
 }
+
+/* (A) 3 COLUMNS ON BIG SCREENS */
+.gridWrap {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 100%;
+    justify-content: center;
+  }
+  .gridCol {
+    padding: 10px;
+    justify-content: center;
+    margin: auto;
+  }
+  /* (B) BREAK DOWN 1 COLUMN ON SMALL SCREENS */
+  @media only screen and (max-width: 768px) {
+    .gridWrap { grid-template-columns: 100%; }
+  }

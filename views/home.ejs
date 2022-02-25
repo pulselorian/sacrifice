@@ -1,10 +1,66 @@
 <%- include('../views/partials/header'); %>
 <main style="height:100%;">
     <center>
-        <a href="https://pulselorian.com"><img class="banner" src="/uploads/landscape.jpeg"></a>
+        <a href="https://pulselorian.com">
+            <img style="width: 40px;" src="/uploads/pulseLogo.png">
+            <img style="width: 200px" src="/uploads/title.png">
+            <img style="width: 50px"" src="/uploads/beskar.png">
+            <p>COMING SOON to BSC - 1:1 Airdrop on the PulseChain Network.</p>
+        </a>
+        <hr style="width: 80%;"/>
+        <h3>The Sacrifice Lead</h3>
         <p></p>
-        <h3 style="color: rgb(215, 184, 240);">The Sacrifice Lead</h3>
-        <p>
+        <% 
+            let totalSacrificed = data.map(item => item.value).reduce((prev, curr) => prev + curr, 0);
+
+            let totalDAISacrificed = data.map(item => item.token === 'DAI' && item.value ).reduce((prev, curr) => prev + curr, 0);
+            let totalUSDCSacrificed = data.map(item => item.token === 'USDC' && item.value).reduce((prev, curr) => prev + curr, 0);
+            let totalUSDTSacrificed = data.map(item => item.token === 'USDT' && item.value).reduce((prev, curr) => prev + curr, 0);
+            let totalBUSDSacrificed = data.map(item => item.token === 'BUSD' && item.value).reduce((prev, curr) => prev + curr, 0);
+            let totalTUSDSacrificed = data.map(item => item.token === 'TUSD' && item.value).reduce((prev, curr) => prev + curr, 0);
+        
+        %>
+        <p>Total totalSacrificed $ <%= numeral(totalSacrificed).format('0,000.00') %></p>
+        <hr style="width: 80%;"/>
+        <div class="gridWrap">
+            <div class="gridCol">
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdc.svg"> $ <%= numeral(totalUSDCSacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/dai.svg"> $ <%= numeral(totalDAISacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdt.svg"> $ <%= numeral(totalUSDTSacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/busd.svg"> $ <%= numeral(totalBUSDSacrificed).format('0,000.00')  %></p>
+                <p><img style="width: 20px;" src="/uploads/SVG-icons/tusd.svg"> $ <%= numeral(totalTUSDSacrificed).format('0,000.00')  %></p>
+            </div>
+            <div class="gridCol" style="width: 250px;">
+                <canvas id="pie-chart"></canvas>
+            </div>
+        </div>
+        <br />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            new Chart(document.getElementById("pie-chart"), {
+                type: 'pie',
+                data: {
+                labels: ["DAI", "USDC", "USDT", "BUSD", "TUSD"],
+                datasets: [{
+                    label: "Population (millions)",
+                    backgroundColor: ["#d9d325", "#2f6deb","#1b691e","#d9a625","#230c7d"],
+                    data: [<%=totalDAISacrificed%>,<%=totalUSDCSacrificed%>,<%=totalUSDTSacrificed%>,<%=totalBUSDSacrificed%>,<%=totalTUSDSacrificed%>],
+                    borderColor:"ffffff",
+                    borderWidth:1,
+                }]
+                },
+                options: {
+                title: {
+                    display: true,
+                    text: 'Sacrifice breakdown'
+                },
+                legend: {
+                        position: 'bottom'
+                    }
+                }    
+            });
+        </script>
         <div class="dataTableContainer">
             <table id="datatable" class="display compact table table-hover table-dark table-striped table-responsive" style="width: 100%;">
                 <thead>
@@ -17,8 +73,8 @@
                 <tbody>
                     <% for (var i=0; i < data.length; i++) { %>
                     <tr>
-                        <td id="<%= data[i].from %>" style="width:350px; font-size: 14px; text-align:center" onclick="copyToClipboard('<%= data[i].from %>')">
-                            <div style="display: inline-block;">
+                        <td id="<%= data[i].from %>" style="font-size: 14px;" onclick="copyToClipboard('<%= data[i].from %>')">
+                            <div style="display: block;">
                             <%= data[i].from %> 
                             <a href="#" data-tooltip="copy address." class="customdata">
                                 <i class="fa-solid fa-copy" style="color: grey;"></i>
