@@ -20,7 +20,7 @@
             let totalTUSDSacrificed = data.map(item => item.token === 'TUSD' && item.value).reduce((prev, curr) => prev + curr, 0);
         
         %>
-        <h4 style="color: rgb(228, 201, 253);">Total totalSacrificed $ <%= numeral(totalSacrificed).format('0,000.00') %></h4>
+        <h4 style="color: rgb(228, 201, 253);">Total Sacrificed $ <%= numeral(totalSacrificed).format('0,000.00') %></h4>
         <hr style="width: 80%;"/>
         <div class="gridWrap">
             <div class="gridCol">
