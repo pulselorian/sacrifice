@@ -5,11 +5,11 @@
             <img style="width: 40px;" src="/uploads/pulseLogo.png">
             <img style="width: 200px" src="/uploads/title.png">
             <img style="width: 50px"" src="/uploads/beskar.png">
-            <p>COMING SOON to BSC - 1:1 Airdrop on the PulseChain Network.</p>
+            <p style="padding: 10px;">COMING SOON on <img style="width: 20px"" src="/uploads/bnb.png"> BSC - 1:1 Airdrop on the PulseChain Network.</p>
         </a>
         <hr style="width: 80%;"/>
         <h3>The Sacrifice Lead</h3>
-        <p></p>
+        <p><img style="width: 100px"" src="/uploads/liquid.png"></p>
         <% 
             let totalSacrificed = data.map(item => item.value).reduce((prev, curr) => prev + curr, 0);
 
@@ -20,7 +20,7 @@
             let totalTUSDSacrificed = data.map(item => item.token === 'TUSD' && item.value).reduce((prev, curr) => prev + curr, 0);
         
         %>
-        <p>Total totalSacrificed $ <%= numeral(totalSacrificed).format('0,000.00') %></p>
+        <h4 style="color: rgb(228, 201, 253);">Total totalSacrificed $ <%= numeral(totalSacrificed).format('0,000.00') %></h4>
         <hr style="width: 80%;"/>
         <div class="gridWrap">
             <div class="gridCol">
