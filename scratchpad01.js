@@ -16,16 +16,16 @@ const bscweb3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed1.
 const sacrificeAddress = '0x2e91728aF3a54aCDCeD7938fE9016aE2cc5948C9';
 
 var metas = [
-    { network: 'BSC', contract: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', token: 'DAI', decimals: Math.pow(10, 18), startBlock: 15395000, endBlock: 0 },
-    { network: 'BSC', contract: '0x55d398326f99059fF775485246999027B3197955', token: 'USDT', decimals: Math.pow(10, 18), startBlock: 15385000, endBlock: 0 },
-    { network: 'BSC', contract: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', token: 'USDC', decimals: Math.pow(10, 18), startBlock: 15385000, endBlock: 0 },
-    { network: 'BSC', contract: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56', token: 'BUSD', decimals: Math.pow(10, 18), startBlock: 15385000, endBlock: 0 },
-    { network: 'ETH', contract: '0x0000000000085d4780B73119b644AE5ecd22b376', token: 'TUSD', decimals: Math.pow(10, 18), startBlock: 14230000, endBlock: 0 },
-    // { network: 'ETH', contract: '0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39', token: 'HEX', decimals: Math.pow(10, 8), startBlock: 14230000, endBlock: 0 },
-    { network: 'ETH', contract: '0x4Fabb145d64652a948d72533023f6E7A623C7C53', token: 'BUSD', decimals: Math.pow(10, 18), startBlock: 14230000, endBlock: 0 },
-    { network: 'ETH', contract: '0x6B175474E89094C44Da98b954EedeAC495271d0F', token: 'DAI', decimals: Math.pow(10, 18), startBlock: 14230000, endBlock: 0 },
-    { network: 'ETH', contract: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', token: 'USDC', decimals: Math.pow(10, 6), startBlock: 14230000, endBlock: 0 },
-    { network: 'ETH', contract: '0xdAC17F958D2ee523a2206206994597C13D831ec7', token: 'USDT', decimals: Math.pow(10, 6), startBlock: 14230000, endBlock: 0 }
+    { network: 'BSC', contract: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', scansite: 'bscscan', token: 'DAI', decimals: Math.pow(10, 18), startBlock: 15385000, endBlock: 0 },
+    // { network: 'BSC', contract: '0x55d398326f99059fF775485246999027B3197955', scansite: 'bscscan', token: 'USDT', decimals: Math.pow(10, 18), startBlock: 15385000, endBlock: 0 },
+    // { network: 'BSC', contract: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', scansite: 'bscscan', token: 'USDC', decimals: Math.pow(10, 18), startBlock: 15385000, endBlock: 0 },
+    // { network: 'BSC', contract: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56', scansite: 'bscscan', token: 'BUSD', decimals: Math.pow(10, 18), startBlock: 15385000, endBlock: 0 },
+    // { network: 'ETH', contract: '0x0000000000085d4780B73119b644AE5ecd22b376', scansite: 'etherscan', token: 'TUSD', decimals: Math.pow(10, 18), startBlock: 14230000, endBlock: 0 },
+    // // { network: 'ETH', contract: '0x2b591e99afE9f32eAA6214f7B7629768c40Eeb39', scansite: 'etherscan', token: 'HEX', decimals: Math.pow(10, 8), startBlock: 14230000, endBlock: 0 },
+    // { network: 'ETH', contract: '0x4Fabb145d64652a948d72533023f6E7A623C7C53', scansite: 'etherscan', token: 'BUSD', decimals: Math.pow(10, 18), startBlock: 14230000, endBlock: 0 },
+    // { network: 'ETH', contract: '0x6B175474E89094C44Da98b954EedeAC495271d0F', scansite: 'etherscan', token: 'DAI', decimals: Math.pow(10, 18), startBlock: 14230000, endBlock: 0 },
+    // { network: 'ETH', contract: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', scansite: 'etherscan', token: 'USDC', decimals: Math.pow(10, 6), startBlock: 14230000, endBlock: 0 },
+    // { network: 'ETH', contract: '0xdAC17F958D2ee523a2206206994597C13D831ec7', scansite: 'etherscan', token: 'USDT', decimals: Math.pow(10, 6), startBlock: 14230000, endBlock: 0 }
 ];
 
 const abi = [{
@@ -54,6 +54,7 @@ metas.forEach(async function (meta) {
     await callBlockChain(meta, bscLBN, ethLBN);
 });
 
+// console.log(JSON.stringify(sacrificers));
 
 async function getPastEvents(web3, myContractInstance, fromBlock, toBlock, meta) {
     await myContractInstance.getPastEvents('Transfer', {
@@ -64,64 +65,52 @@ async function getPastEvents(web3, myContractInstance, fromBlock, toBlock, meta)
         .then(function (events) {
             // console.log("events count -> " + events.length);
             events.forEach(async function (event) {
-                // console.log("event -> " + JSON.stringify(event));
-
-                // let storedBlock = blockMap[event.blockNumber];
-                // if (storedBlock === undefined) {
                 let block = await web3.eth.getBlock(event.blockNumber);
-                // console.log("block -> " + JSON.stringify(block));
 
-                //     storedBlock = {};
-                //     storedBlock[event.blockNumber] = block.timestamp;
-                //     console.log("new -> " + JSON.stringify(storedBlock));
+                // let index = sacrificers.findIndex(element => {
+                //     if (element.from === event.returnValues.from) {
+                //         return true;
+                //     }
+                // });
+                // if (index > -1) {
+                //     if (Number.isNaN(Number(event.returnValues.value))) {
+                //         // do nothing
+                //     } else {
+                //         // sacrificers.at(index).value += (Number(event.returnValues.value) / meta.decimals);
+                //         // let transaction = {};
+                //         // transaction.blockNumber = event.blockNumber;
+                //         // transaction.timestamp = block.timestamp;
+                //         // transaction.trasactionHash = event.transactionHash;
+                //         // transaction.value = Number(event.returnValues.value) / meta.decimals;
+                //         // transaction.token = meta.token;
+                //         // transaction.scansite = meta.scansite;
+                //         // sacrificers.at(index).transactions.push(transaction);
+                //     }
                 // } else {
-                //     console.log("reused -> " + JSON.stringify(storedBlock));
-                // }
+                // let item = {};
+                // item.transactions = [];
+                let transaction = {};
+                transaction.from = event.returnValues.from;
+                transaction.blockNumber = event.blockNumber;
+                transaction.timestamp = block.timestamp;
+                transaction.trasactionHash = event.transactionHash;
+                transaction.value = Number(event.returnValues.value) / meta.decimals;
+                transaction.token = meta.token;
+                transaction.scansite = meta.scansite;
+                // item.transactions.push(transaction);
+                // item.from = event.returnValues.from;
 
-
-                let index = sacrificers.findIndex(element => {
-                    if (element.from === event.returnValues.from && element.token === meta.token) {
-                        return true;
-                    }
-                });
-                if (index > -1) {
-                    if (Number.isNaN(Number(event.returnValues.value))) {
-                        // do nothing
-                    } else {
-                        sacrificers.at(index).value += (Number(event.returnValues.value) / meta.decimals);
-                        let transaction = {};
-                        transaction.blockNumber = event.blockNumber;
-                        // transaction.timestamp = storedBlock[event.blockNumber];
-                        transaction.timestamp = block.timestamp;
-                        transaction.trasactionHash = event.transactionHash;
-                        transaction.value = Number(event.returnValues.value) / meta.decimals;
-                        sacrificers.at(index).transactions.push(transaction);
-
-                        // console.log("sacrificers.at(index) -> " + JSON.stringify(sacrificers.at(index)));
-                    }
-                } else {
-                    let item = {};
-                    item.transactions = [];
-                    let transaction = {};
-                    transaction.blockNumber = event.blockNumber;
-                    // transaction.timestamp = storedBlock[event.blockNumber];
-                    transaction.timestamp = block.timestamp;
-                    transaction.trasactionHash = event.transactionHash;
-                    transaction.value = Number(event.returnValues.value) / meta.decimals;
-                    item.transactions.push(transaction);
-                    item.from = event.returnValues.from;
-
-                    item.value = Number(event.returnValues.value) / meta.decimals;
-                    if (Number.isNaN(Number(item.value))) {
-                        item.value = 0;
-                    }
-                    item.token = meta.token;
-
-                    // console.log("item -> " + JSON.stringify(item));
-                    sacrificers.push(item);
+                // item.value = Number(event.returnValues.value) / meta.decimals;
+                if (Number.isNaN(Number(transaction.value))) {
+                    transaction.value = 0;
                 }
-                // break; // To Remove
+
+                sacrificers.push(transaction);
+                console.log(JSON.stringify(transaction));
+                // }
             })
+
+
         }).catch(err => { console.log(err) });
 }
 
@@ -147,6 +136,5 @@ async function callBlockChain(meta, bscLBN, ethLBN) {
         fromBlock = toBlock;
         toBlock += 5000;
         freeze(211);
-        // break; // TODO remove
     }
 }
