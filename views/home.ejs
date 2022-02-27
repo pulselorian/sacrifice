@@ -85,16 +85,26 @@
                             style="width:100%">
                             <thead>
                                 <tr>
+                                    <!-- <th>id</th> -->
                                     <th>fromAddress</th>
+                                    <!-- <th>blockNumber</th> -->
+                                    <th>timestamp</th>
+                                    <!-- <th>trasactionHash</th> -->
                                     <th>amount</th>
-                                    <th>trasactionHash</th>
+                                    <th>token</th>
+                                    <!-- <th>scansite</th> -->
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
+                                    <!-- <th>id</th> -->
                                     <th>fromAddress</th>
+                                    <!-- <th>blockNumber</th> -->
+                                    <th>timestamp</th>
+                                    <!-- <th>trasactionHash</th> -->
                                     <th>amount</th>
-                                    <th>trasactionHash</th>
+                                    <th>token</th>
+                                    <!-- <th>scansite</th> -->
                                 </tr>
                             </tfoot>
                         </table>
@@ -117,35 +127,31 @@
 
                         function populateDataTable(data) {
                             $("#datatable").DataTable().clear();
-                            var row = 1;
-                            $.each(data, function (index, value) {
-                                console.log("value: " + JSON.stringify(value));
-                                $('#datatable').dataTable().fnAddData([
-                                    row,
-                                    value.fromAddress,
-                                    value.amount,
-                                    value.trasactionHash
-                                ]);
-
-                                row++;
-                            });
+                            var row = 0;
+                            // console.log("data: "  + JSON.stringify(data));
+                            // $('#datatable').dataTable().fnAddData(data.data);
+                            $.each(data.data, function (index, value) {
+                                value.timestamp = new Date(value.timestamp);
+                                // value.token = value.token.toLowerCase();
+                                $('#datatable').dataTable().fnAddData(value);
+                            });                           
                         }
 
-                        function formatChild(d) {
-                            let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; box-shadow: 1px 1px 10px 5px rgb(70, 67, 75);">';
-                            for (var i = 0; i < d.transactions.length; i++) {
-                                res += '<tr><td>Transaction date:</td><td>';
-                                res += new Date(d.transactions[i].timestamp);
-                                res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
-                                res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-                                res += '</a></td></tr><tr><td>Token:</td><td>';
-                                res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() + '.svg"> ' + d.transactions[i].token;
-                                res += '</td></tr>';
-                            };
-                            res += '</table>';
-                            // `d` is the original data object for the row
-                            return res;
-                        }
+                        // function formatChild(d) {
+                        //     let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; box-shadow: 1px 1px 10px 5px rgb(70, 67, 75);">';
+                        //     for (var i = 0; i < d.transactions.length; i++) {
+                        //         res += '<tr><td>Transaction date:</td><td>';
+                        //         res += new Date(d.transactions[i].timestamp);
+                        //         res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
+                        //         res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                        //         res += '</a></td></tr><tr><td>Token:</td><td>';
+                        //         res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() + '.svg"> ' + d.transactions[i].token;
+                        //         res += '</td></tr>';
+                        //     };
+                        //     res += '</table>';
+                        //     // `d` is the original data object for the row
+                        //     return res;
+                        // }
 
                         $(document).ready(function () {
                             var table = $('#datatable').DataTable({
@@ -154,7 +160,7 @@
                                     type: 'GET',
                                     contentType: 'application/json',
                                     success: function (data) {
-                                        alert('Done!');
+                                        // alert('Done!');
                                         populateDataTable(data);
                                     },
                                     error: function (e) {
@@ -165,15 +171,21 @@
                                 },
                                 select: "single",
                                 "columns": [
+                                    // { "data": "" },
+                                    // { "data": "id" },
                                     { "data": "fromAddress" },
+                                    // { "data": "blockNumber" },
+                                    { "data": "timestamp" },
+                                    // { "data": "trasactionHash" },
                                     { "data": "amount", render: $.fn.dataTable.render.number(',', '.', 2, '') },
-                                    { "data": "trasactionHash" }
+                                    { "data": "token" },
+                                    // { "data": "scansite" }
                                 ],
                                 "pageLength": 25,
                                 "scrollY": 400,
                                 "scrollX": true,
                                 "order": [[2, "desc"]]
-                            });                            
+                            });
                         });
 
                     </script>

@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const quotes = require('../services/transactions');
+const transactions = require('../services/transactions');
 
 /* GET transaction listing. */
 router.get('/transactions', (req, res, next) => {
         try {
-            res.json(quotes.getMultiple(req.query.page));
+            res.json(transactions.getMultiple(req.query.page));
         } catch (err) {
-            console.error(`Error while getting quotes `, err.message);
+            console.error(`Error while getting transactions `, err.message);
             next(err);
         }
     });
 
-/* POST quote */
+/* POST transaction */
 router.post('/v1', (req, res, next) => {
         try {
-            res.json(quotes.create(req.body));
+            res.json(transactions.create(req.body));
         } catch (err) {
-            console.error(`Error while adding quotes `, err.message);
+            console.error(`Error while adding transactions `, err.message);
             next(err);
         }
     });
