@@ -1,74 +1,18 @@
 <%- include('../views/partials/header'); %>
-    <table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th></th>
-                <th>from</th>
-                <th>amount</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>from</th>
-                <th>amount</th>
-            </tr>
-        </tfoot>
-    </table>
-    </div>
-    <br />
-    <br />
+<main style="height:100%;">
+    <center>
+        <a href="https://pulselorian.com">
+            <img style="width: 40px;" src="/uploads/pulseLogo.png">
+            <img style="width: 200px" src="/uploads/title.png">
+            <img style="width: 50px"" src="/uploads/beskar.png">
+            <p style="padding: 10px;">COMING SOON on <img style="width: 20px"" src="/uploads/bnb.png"> BSC - 1:1 Airdrop on the PulseChain Network.</p>
+        </a>
+        <hr style="width: 80%;"/>
+        <h3>The Sacrifice Lead</h3>
+        <p><img style="width: 100px"" src="/uploads/liquid.png"></p>
+        <% 
+            let totalSacrificed = data.map(item => item.value).reduce((prev, curr) => prev + curr, 0);
 
-<<<<<<< HEAD
-
-    <p style="padding: 20px;">Access our <a href="/api">API</a></p>
-    <script>
-
-        $(document).ready(function () {
-
-            var table = $('#example').DataTable({
-                "ajax": "/data.txt",
-                select: "single",
-                "columns": [
-                    {
-                        "className": 'details-control',
-                        "orderable": false,
-                        "data": null,
-                        "defaultContent": '',
-                        "render": function () {
-                            return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
-                        },
-                        width: "15px"
-                    },
-                    { "data": "from" },
-                    { "data": "value" }
-                ],
-                "order": [[1, 'asc']]
-            });
-
-            // Add event listener for opening and closing details
-            $('#example tbody').on('click', 'td.details-control', function () {
-                var tr = $(this).closest('tr');
-                var tdi = tr.find("i.fa");
-                var row = table.row(tr);
-
-                if (row.child.isShown()) {
-                    // This row is already open - close it
-                    row.child.hide();
-                    tr.removeClass('shown');
-                    tdi.first().removeClass('fa-minus-square');
-                    tdi.first().addClass('fa-plus-square');
-                }
-                else {
-                    // Open this row
-                    row.child(format(row.data())).show();
-                    tr.addClass('shown');
-                    tdi.first().removeClass('fa-plus-square');
-                    tdi.first().addClass('fa-minus-square');
-                }
-            });
-
-=======
             let arrDAI = [];
             let arrUSDC = [];
             let arrUSDT = [];
@@ -212,40 +156,18 @@
                     tdi.first().addClass('fa-minus-square');
                 }
             });
->>>>>>> c8da289b0a7812a1041411bcc4eb36c78c8bad4a
             table.on("user-select", function (e, dt, type, cell, originalEvent) {
                 if ($(cell.node()).hasClass("details-control")) {
                     e.preventDefault();
                 }
             });
         });
-<<<<<<< HEAD
-
-        function format(d) {
-            let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-=======
         function format(d) {
             let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; box-shadow: 1px 1px 10px 5px rgb(70, 67, 75);">';
->>>>>>> c8da289b0a7812a1041411bcc4eb36c78c8bad4a
             for (var i = 0; i < d.transactions.length; i++) {
                 res += '<tr><td>Transaction date:</td><td>';
                 res += new Date(d.transactions[i].timestamp);
                 res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
-<<<<<<< HEAD
-                res += d.transactions[i].value;
-                res += '</a></td></tr><tr><td>Token:</td><td>';
-                res += d.transactions[i].token;
-                res += '</td></tr>';
-            };
-            res += '</table>';
-
-            // `d` is the original data object for the row
-            return res;
-
-        }
-    </script>
-    <%- include('../views/partials/footer'); %>
-=======
                 res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                 res += '</a></td></tr><tr><td>Token:</td><td>';
                 res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() +  '.svg"> ' + d.transactions[i].token;
@@ -260,4 +182,3 @@
     </center>
 </main>
 <%- include('../views/partials/footer'); %>
->>>>>>> c8da289b0a7812a1041411bcc4eb36c78c8bad4a

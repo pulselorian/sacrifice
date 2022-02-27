@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "better-sqlite3": "^7.5.0",
     "ejs": "^3.1.6",
     "ethers": "^5.5.4",
     "express": "^4.17.1",
