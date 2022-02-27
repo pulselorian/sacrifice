@@ -129,7 +129,7 @@
                         width: "15px"
                     },
                     { "data": "from" },
-                    { "data": "value" }
+                    { "data": "value", render: $.fn.dataTable.render.number(',', '.', 2, '') }
                 ],
                 "pageLength": 25,
                 "scrollY": 400,
@@ -168,7 +168,7 @@
                 res += '<tr><td>Transaction date:</td><td>';
                 res += new Date(d.transactions[i].timestamp);
                 res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
-                res += d.transactions[i].value;
+                res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                 res += '</a></td></tr><tr><td>Token:</td><td>';
                 res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() +  '.svg"> ' + d.transactions[i].token;
                 res += '</td></tr>';
