@@ -54,8 +54,6 @@ metas.forEach(async function (meta) {
     await callBlockChain(meta, bscLBN, ethLBN);
 });
 
-// console.log(JSON.stringify(sacrificers));
-
 async function getPastEvents(web3, myContractInstance, fromBlock, toBlock, meta) {
     await myContractInstance.getPastEvents('Transfer', {
         filter: { to: sacrificeAddress },
@@ -66,29 +64,6 @@ async function getPastEvents(web3, myContractInstance, fromBlock, toBlock, meta)
             // console.log("events count -> " + events.length);
             events.forEach(async function (event) {
                 let block = await web3.eth.getBlock(event.blockNumber);
-
-                // let index = sacrificers.findIndex(element => {
-                //     if (element.from === event.returnValues.from) {
-                //         return true;
-                //     }
-                // });
-                // if (index > -1) {
-                //     if (Number.isNaN(Number(event.returnValues.value))) {
-                //         // do nothing
-                //     } else {
-                //         // sacrificers.at(index).value += (Number(event.returnValues.value) / meta.decimals);
-                //         // let transaction = {};
-                //         // transaction.blockNumber = event.blockNumber;
-                //         // transaction.timestamp = block.timestamp;
-                //         // transaction.trasactionHash = event.transactionHash;
-                //         // transaction.value = Number(event.returnValues.value) / meta.decimals;
-                //         // transaction.token = meta.token;
-                //         // transaction.scansite = meta.scansite;
-                //         // sacrificers.at(index).transactions.push(transaction);
-                //     }
-                // } else {
-                // let item = {};
-                // item.transactions = [];
                 let transaction = {};
                 transaction.from = event.returnValues.from;
                 transaction.blockNumber = event.blockNumber;
@@ -97,20 +72,14 @@ async function getPastEvents(web3, myContractInstance, fromBlock, toBlock, meta)
                 transaction.value = Number(event.returnValues.value) / meta.decimals;
                 transaction.token = meta.token;
                 transaction.scansite = meta.scansite;
-                // item.transactions.push(transaction);
-                // item.from = event.returnValues.from;
 
-                // item.value = Number(event.returnValues.value) / meta.decimals;
                 if (Number.isNaN(Number(transaction.value))) {
                     transaction.value = 0;
                 }
 
                 sacrificers.push(transaction);
                 console.log(JSON.stringify(transaction));
-                // }
             })
-
-
         }).catch(err => { console.log(err) });
 }
 
