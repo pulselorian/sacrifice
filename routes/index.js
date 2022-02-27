@@ -4,6 +4,7 @@ const router = express.Router({
 });
 const Web3 = require("web3");
 const { ethers } = require("ethers");
+const fs = require('file-system');
 const numeral = require('numeral');
 
 function freeze(time) {
@@ -106,6 +107,11 @@ async function getPastEvents(web3, myContractInstance, fromBlock, toBlock, meta)
                     sacrificers.push(item);
                 }
             })
+            fs.writeFile('public/data.txt', JSON.stringify({data: sacrificers}), function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
         }).catch(err => { console.log(err) });
 }
 

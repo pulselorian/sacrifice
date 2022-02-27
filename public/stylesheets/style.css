@@ -1,5 +1,20 @@
 @import url('../node_modules/font-awesome/css/font-awesome.min.css');
 
+#wrap {
+    width:100%;
+}
+#wrap:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#wrap .address {
+    float: left;
+    width:33%;
+}
+
 body {
     background: rgb(0, 0, 0);
     background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgb(21, 3, 36) 100%);
@@ -44,7 +59,7 @@ input {
 }
 
 select {
-    color: white;
+    color: rgb(163, 163, 163);
 }
 
 label {
@@ -62,6 +77,16 @@ label {
 td {
     background-color: black !important;
     border: 0.5px solid #252525 !important;
+}
+
+td.details-control {
+    text-align:center;
+    color:rgb(36, 230, 36);
+cursor: pointer;
+}
+tr.shown td.details-control {
+text-align:center; 
+color:red;
 }
 
 /* tooltip */
