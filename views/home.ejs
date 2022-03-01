@@ -1,14 +1,14 @@
 <%- include('../views/partials/header'); %>
-<main style="height:100%;">
-    <center>
-        <a href="https://pulselorian.com">
-            <img style="width: 40px;" src="/uploads/pulseLogo.png">
-            <img style="width: 200px" src="/uploads/title.png">
-            <img style="width: 50px"" src="/uploads/beskar.png">
-            <p style="padding: 10px; color: rgb(228, 201, 253);">COMING SOON on <img style="width: 20px"" src="/uploads/bnb.png"> BSC - 1:1 Airdrop on the PulseChain Network.</p>
-        </a>
-        <% 
-            let totalSacrificed = data.map(item => item.value).reduce((prev, curr) => prev + curr, 0);
+    <main style="height:100%;">
+        <center>
+            <a href="https://pulselorian.com">
+                <img style="width: 40px;" src="/uploads/pulseLogo.png">
+                <img style="width: 200px" src="/uploads/title.png">
+                <img style="width: 50px"" src=" /uploads/beskar.png">
+                <p style="padding: 10px; color: rgb(228, 201, 253);">COMING SOON on <img style="width: 20px"" src="
+                        /uploads/bnb.png"> BSC - 1:1 Airdrop on the PulseChain Network.</p>
+            </a>
+            <% let totalSacrificed=data.map(item=> item.value).reduce((prev, curr) => prev + curr, 0);
 
                 let arrDAI = [];
                 let arrUSDC = [];
@@ -16,48 +16,89 @@
                 let arrTUSD = [];
                 let arrBUSD = [];
 
-            let arrLockup = [
-            ];
+                let arrLockup = [
+                ];
 
-            for (var k = 0; k < 24; k++) {
-                arrLockup[k] = [];
-            }
-
-            for (var i = 0; i < data.length; i++) {
-                for (var j = 0; j < data[i].transactions.length; j++) {
-                    if(data[i].transactions[j].token === 'DAI') {arrDAI.push(data[i].transactions[j].value);}
-                    if(data[i].transactions[j].token === 'USDC') {arrUSDC.push(data[i].transactions[j].value);}
-                    if(data[i].transactions[j].token === 'USDT') {arrUSDT.push(data[i].transactions[j].value);}
-                    if(data[i].transactions[j].token === 'TUSD') {arrTUSD.push(data[i].transactions[j].value);}
-                    if(data[i].transactions[j].token === 'BUSD') {arrBUSD.push(data[i].transactions[j].value);}
-                    
-                     var dec = (data[i].transactions[j].value - Math.floor(data[i].transactions[j].value)).toFixed(2);
-                    if( dec === '0.01') {arrLockup[0].push(data[i].transactions[j].value);}
-                    if( dec === '0.02') {arrLockup[1].push(data[i].transactions[j].value);}
-                    if( dec === '0.03') {arrLockup[2].push(data[i].transactions[j].value);}
-                    if( dec === '0.04') {arrLockup[3].push(data[i].transactions[j].value);}
-                    if( dec === '0.05') {arrLockup[4].push(data[i].transactions[j].value);}
-                    if( dec === '0.06') {arrLockup[5].push(data[i].transactions[j].value);}
-                    if( dec === '0.07') {arrLockup[6].push(data[i].transactions[j].value);}
-                    if( dec === '0.08') {arrLockup[7].push(data[i].transactions[j].value);}
-                    if( dec === '0.09') {arrLockup[8].push(data[i].transactions[j].value);}
-                    if( dec === '0.10') {arrLockup[9].push(data[i].transactions[j].value);}
-                    if( dec === '0.11') {arrLockup[10].push(data[i].transactions[j].value);}
-                    if( dec === '0.12') {arrLockup[11].push(data[i].transactions[j].value);}
-                    if( dec === '0.13') {arrLockup[12].push(data[i].transactions[j].value);}
-                    if( dec === '0.14') {arrLockup[13].push(data[i].transactions[j].value);}
-                    if( dec === '0.15') {arrLockup[14].push(data[i].transactions[j].value);}
-                    if( dec === '0.16') {arrLockup[15].push(data[i].transactions[j].value);}
-                    if( dec === '0.17') {arrLockup[16].push(data[i].transactions[j].value);}
-                    if( dec === '0.18') {arrLockup[17].push(data[i].transactions[j].value);}
-                    if( dec === '0.19') {arrLockup[18].push(data[i].transactions[j].value);}
-                    if( dec === '0.20') {arrLockup[19].push(data[i].transactions[j].value);}
-                    if( dec === '0.21') {arrLockup[20].push(data[i].transactions[j].value);}
-                    if( dec === '0.22') {arrLockup[21].push(data[i].transactions[j].value);}
-                    if( dec === '0.23') {arrLockup[22].push(data[i].transactions[j].value);}
-                    if( dec === '0.24') {arrLockup[23].push(data[i].transactions[j].value);}
-                }
-            }
+                for (var k = 0; k < 24; k++) { arrLockup[k]=[]; } for (var i=0; i < data.length; i++) { for (var j=0; j
+                    < data[i].transactions.length; j++) { if(data[i].transactions[j].token==='DAI' )
+                    {arrDAI.push(data[i].transactions[j].value);} if(data[i].transactions[j].token==='USDC' )
+                    {arrUSDC.push(data[i].transactions[j].value);} if(data[i].transactions[j].token==='USDT' )
+                    {arrUSDT.push(data[i].transactions[j].value);} if(data[i].transactions[j].token==='TUSD' )
+                    {arrTUSD.push(data[i].transactions[j].value);} if(data[i].transactions[j].token==='BUSD' )
+                    {arrBUSD.push(data[i].transactions[j].value);} var dec=(data[i].transactions[j].value -
+                    Math.floor(data[i].transactions[j].value)).toFixed(2); if( dec==='0.01' )
+                    {arrLockup[0].push(data[i].transactions[j].value);} if( dec==='0.02' )
+                    {arrLockup[1].push(data[i].transactions[j].value);} if( dec==='0.03' )
+                    {arrLockup[2].push(data[i].transactions[j].value);} if( dec==='0.04' )
+                    {arrLockup[3].push(data[i].transactions[j].value);} if( dec==='0.05' )
+                    {arrLockup[4].push(data[i].transactions[j].value);} if( dec==='0.06' )
+                    {arrLockup[5].push(data[i].transactions[j].value);} if( dec==='0.07' )
+                    {arrLockup[6].push(data[i].transactions[j].value);} if( dec==='0.08' )
+                    {arrLockup[7].push(data[i].transactions[j].value);} if( dec==='0.09' )
+                    {arrLockup[8].push(data[i].transactions[j].value);} if( dec==='0.10' )
+                    {arrLockup[9].push(data[i].transactions[j].value);} if( dec==='0.11' )
+                    {arrLockup[10].push(data[i].transactions[j].value);} if( dec==='0.12' )
+                    {arrLockup[11].push(data[i].transactions[j].value);} if( dec==='0.13' )
+                    {arrLockup[12].push(data[i].transactions[j].value);} if( dec==='0.14' )
+                    {arrLockup[13].push(data[i].transactions[j].value);} if( dec==='0.15' )
+                    {arrLockup[14].push(data[i].transactions[j].value);} if( dec==='0.16' )
+                    {arrLockup[15].push(data[i].transactions[j].value);} if( dec==='0.17' )
+                    {arrLockup[16].push(data[i].transactions[j].value);} if( dec==='0.18' )
+                    {arrLockup[17].push(data[i].transactions[j].value);} if( dec==='0.19' )
+                    {arrLockup[18].push(data[i].transactions[j].value);} if( dec==='0.20' )
+                    {arrLockup[19].push(data[i].transactions[j].value);} if( dec==='0.21' )
+                    {arrLockup[20].push(data[i].transactions[j].value);} if( dec==='0.22' )
+                    {arrLockup[21].push(data[i].transactions[j].value);} if( dec==='0.23' )
+                    {arrLockup[22].push(data[i].transactions[j].value);} if( dec==='0.24' )
+                    {arrLockup[23].push(data[i].transactions[j].value);} } } let ttDAI=_.sum(arrDAI); let
+                    ttUSDC=_.sum(arrUSDC); let ttUSDT=_.sum(arrUSDT); let ttTUSD=_.sum(arrTUSD); let
+                    ttBUSD=_.sum(arrBUSD); let ttLockup1=_.sum(arrLockup[0]); let ttLockup2=_.sum(arrLockup[1]); let
+                    ttLockup3=_.sum(arrLockup[2]); let ttLockup4=_.sum(arrLockup[3]); let ttLockup5=_.sum(arrLockup[4]);
+                    let ttLockup6=_.sum(arrLockup[5]); let ttLockup7=_.sum(arrLockup[6]); let
+                    ttLockup8=_.sum(arrLockup[7]); let ttLockup9=_.sum(arrLockup[8]); let
+                    ttLockup10=_.sum(arrLockup[9]); let ttLockup11=_.sum(arrLockup[10]); let
+                    ttLockup12=_.sum(arrLockup[11]); let ttLockup13=_.sum(arrLockup[12]); let
+                    ttLockup14=_.sum(arrLockup[13]); let ttLockup15=_.sum(arrLockup[14]); let
+                    ttLockup16=_.sum(arrLockup[15]); let ttLockup17=_.sum(arrLockup[16]); let
+                    ttLockup18=_.sum(arrLockup[17]); let ttLockup19=_.sum(arrLockup[18]); let
+                    ttLockup20=_.sum(arrLockup[19]); let ttLockup21=_.sum(arrLockup[20]); let
+                    ttLockup22=_.sum(arrLockup[21]); let ttLockup23=_.sum(arrLockup[22]); let
+                    ttLockup24=_.sum(arrLockup[23]); %>
+                    <div class="dataTableContainer">
+                        <h3>The Sacrifice Lead</h3>
+                        <p><img style="width: 100px"" src=" /uploads/liquid.png"></p>
+                        <h4 style="color: rgb(228, 201, 253);">Total Sacrificed $ <%=
+                                numeral(totalSacrificed).format('0,000.00') %>
+                        </h4>
+                    </div>
+                    <br />
+                    <div class="dataTableContainer">
+                        <div class="gridWrap">
+                            <div class="gridCol">
+                                <h4 style="color: rgb(228, 201, 253);">Total $ by Token</h4>
+                                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdc.svg"> $ <%=
+                                        numeral(ttUSDC).format('0,000.00') %>
+                                </p>
+                                <p><img style="width: 20px;" src="/uploads/SVG-icons/dai.svg"> $ <%=
+                                        numeral(ttDAI).format('0,000.00') %>
+                                </p>
+                                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdt.svg"> $ <%=
+                                        numeral(ttUSDT).format('0,000.00') %>
+                                </p>
+                                <p><img style="width: 20px;" src="/uploads/SVG-icons/busd.svg"> $ <%=
+                                        numeral(ttBUSD).format('0,000.00') %>
+                                </p>
+                                <p><img style="width: 20px;" src="/uploads/SVG-icons/tusd.svg"> $ <%=
+                                        numeral(ttTUSD).format('0,000.00') %>
+                                </p>
+                            </div>
+                            <div class="gridCol" style="width: 250px;">
+                                <canvas id="pie-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                     <script>
                         new Chart(document.getElementById("pie-chart"), {
@@ -88,144 +129,39 @@
                             style="width:100%">
                             <thead>
                                 <tr>
-                                    <!-- <th>id</th> -->
-                                    <th>fromAddress</th>
-                                    <!-- <th>blockNumber</th> -->
-                                    <th>timestamp</th>
-                                    <!-- <th>trasactionHash</th> -->
+                                    <th></th>
+                                    <th>from</th>
                                     <th>amount</th>
-                                    <th>token</th>
-                                    <!-- <th>scansite</th> -->
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <!-- <th>id</th> -->
-                                    <th>fromAddress</th>
-                                    <!-- <th>blockNumber</th> -->
-                                    <th>timestamp</th>
-                                    <!-- <th>trasactionHash</th> -->
+                                    <th></th>
+                                    <th>from</th>
                                     <th>amount</th>
-                                    <th>token</th>
-                                    <!-- <th>scansite</th> -->
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                     <br />
-                    <br />
 
-            let ttLockup1 = _.sum(arrLockup[0]);
-            let ttLockup2 = _.sum(arrLockup[1]);
-            let ttLockup3 = _.sum(arrLockup[2]);
-            let ttLockup4 = _.sum(arrLockup[3]);
-            let ttLockup5 = _.sum(arrLockup[4]);
-            let ttLockup6 = _.sum(arrLockup[5]);
-            let ttLockup7 = _.sum(arrLockup[6]);
-            let ttLockup8 = _.sum(arrLockup[7]);
-            let ttLockup9 = _.sum(arrLockup[8]);
-            let ttLockup10 = _.sum(arrLockup[9]);
-            let ttLockup11 = _.sum(arrLockup[10]);
-            let ttLockup12 = _.sum(arrLockup[11]);
-            let ttLockup13 = _.sum(arrLockup[12]);
-            let ttLockup14 = _.sum(arrLockup[13]);
-            let ttLockup15 = _.sum(arrLockup[14]);
-            let ttLockup16 = _.sum(arrLockup[15]);
-            let ttLockup17 = _.sum(arrLockup[16]);
-            let ttLockup18 = _.sum(arrLockup[17]);
-            let ttLockup19 = _.sum(arrLockup[18]);
-            let ttLockup20 = _.sum(arrLockup[19]);
-            let ttLockup21 = _.sum(arrLockup[20]);
-            let ttLockup22 = _.sum(arrLockup[21]);
-            let ttLockup23 = _.sum(arrLockup[22]);
-            let ttLockup24 = _.sum(arrLockup[23]);
-        
-        %>
-        <div class="dataTableContainer">
-            <h3>The Sacrifice Lead</h3>
-            <p><img style="width: 100px"" src="/uploads/liquid.png"></p>
-            <h4 style="color: rgb(228, 201, 253);">Total Sacrificed $ <%= numeral(totalSacrificed).format('0,000.00') %></h4>
-        </div>
-        <br />
-        <div class="dataTableContainer">
-            <div class="gridWrap">
-                <div class="gridCol">
-                    <h4 style="color: rgb(228, 201, 253);">Total $ by Token</h4>
-                    <p><img style="width: 20px;" src="/uploads/SVG-icons/usdc.svg"> $ <%= numeral(ttUSDC).format('0,000.00')  %></p>
-                    <p><img style="width: 20px;" src="/uploads/SVG-icons/dai.svg"> $ <%= numeral(ttDAI).format('0,000.00')  %></p>
-                    <p><img style="width: 20px;" src="/uploads/SVG-icons/usdt.svg"> $ <%= numeral(ttUSDT).format('0,000.00')  %></p>
-                    <p><img style="width: 20px;" src="/uploads/SVG-icons/busd.svg"> $ <%= numeral(ttBUSD).format('0,000.00')  %></p>
-                    <p><img style="width: 20px;" src="/uploads/SVG-icons/tusd.svg"> $ <%= numeral(ttTUSD).format('0,000.00')  %></p>
-                </div>
-                <div class="gridCol" style="width: 250px;">
-                    <canvas id="pie-chart"></canvas>
-                </div>
-            </div>
-        </div>
-        <br />
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-        <script>
-            new Chart(document.getElementById("pie-chart"), {
-                type: 'pie',
-                data: {
-                labels: ["DAI", "USDC", "USDT", "BUSD", "TUSD"],
-                datasets: [{
-                    label: "Sacrifice Breakdown by Tokens",
-                    backgroundColor: ["#d9d325", "#2f6deb","#1b691e","#d9a625","#230c7d"],
-                    data: [<%=ttDAI%>,<%=ttUSDC%>,<%=ttUSDT%>,<%=ttBUSD%>,<%=ttTUSD%>],
-                    borderColor:"ffffff",
-                    borderWidth:1,
-                }]
-                },
-                options: {
-                title: {
-                    display: true,
-                    text: 'Sacrifice breakdown'
-                },
-                legend: {
-                        position: 'bottom'
-                    }
-                }    
-            });
-        </script>
-        <div class="dataTableContainer">
-            <table id="datatable" class="display compact table table-hover table-dark table-responsive" style="width:100%">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>from</th>
-                        <th>amount</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th></th>
-                        <th>from</th>
-                        <th>amount</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <br />
-        
-        <div class="dataTableContainer">
-            <canvas id="bar-chart"></canvas> 
-        </div>
-        <script>
-            new Chart(document.getElementById("bar-chart"), {
-                type: 'bar',
-                data: {
-                labels: ["01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],
-                datasets: [
-                    {
-                    label: "Total Sacrifice by Lockup Period",
-                    backgroundColor: "#ddc7ff",
-                    color: '#ffffff',
-                    borderColor:"#6400ff",
-                    borderWidth: 2,
-                    data: [<%= ttLockup1 %>,
-                           <%= ttLockup2 %>,
+                    <div class="dataTableContainer">
+                        <canvas id="bar-chart"></canvas>
+                    </div>
+                    <script>
+                        new Chart(document.getElementById("bar-chart"), {
+                            type: 'bar',
+                            data: {
+                                labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
+                                datasets: [
+                                    {
+                                        label: "Total Sacrifice by Lockup Period",
+                                        backgroundColor: "#ddc7ff",
+                                        color: '#ffffff',
+                                        borderColor: "#6400ff",
+                                        borderWidth: 2,
+                                        data: [<%= ttLockup1 %>,
+                                               <%= ttLockup2 %>,
                            <%= ttLockup3 %>,
                            <%= ttLockup4 %>,
                            <%= ttLockup5 %>,
@@ -249,69 +185,90 @@
                            <%= ttLockup23 %>,
                            <%= ttLockup24 %>
                            ]
-                    }
-                ]
-                },
-                options: {
-                legend: { display: true },
-                indexAxis: 'y',
-                title: {
-                    display: true,
-                    text: 'Lockup Period'
-                    },
-                plugins: {
-                    legends: {
-                        labels: {
-                            color: '#ffffff'
+                                    }
+                                ]
+                            },
+                            options: {
+                                legend: { display: true },
+                                indexAxis: 'y',
+                                title: {
+                                    display: true,
+                                    text: 'Lockup Period'
+                                },
+                                plugins: {
+                                    legends: {
+                                        labels: {
+                                            color: '#ffffff'
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+
+                    <p style="padding: 20px;">Access our <a href="/api">API</a></p>
+                    <script>
+
+                        function copyToClipboard(id) {
+                            var r = document.createRange();
+                            r.selectNode(document.getElementById(id));
+                            window.getSelection().removeAllRanges();
+                            window.getSelection().addRange(r);
+                            document.execCommand('copy');
+                            window.getSelection().removeAllRanges();
                         }
-                    }
-                }
-                }
-            });
-        </script>
-        
-        <p style="padding: 20px;">Access our <a href="/api">API</a></p>   
-        <script>         
-        
-            function copyToClipboard(id){
-                var r = document.createRange();
-                r.selectNode(document.getElementById(id));
-                window.getSelection().removeAllRanges();
-                window.getSelection().addRange(r);
-                document.execCommand('copy');
-                window.getSelection().removeAllRanges();
-            }
 
                         function populateDataTable(data) {
+                            let sacrifices = [];
                             $("#datatable").DataTable().clear();
                             var row = 0;
                             // console.log("data: "  + JSON.stringify(data));
                             // $('#datatable').dataTable().fnAddData(data.data);
-                            $.each(data.data, function (index, value) {
-                                value.timestamp = new Date(value.timestamp);
-                                // value.token = value.token.toLowerCase();
-                                $('#datatable').dataTable().fnAddData(value);
-                            });                           
-                        }
+                            $.each(data.data, function (indexI, item) {
+                                item.timestamp = new Date(item.timestamp);
+                                // console.log("item: "  + JSON.stringify(item));
 
-                        // function formatChild(d) {
-                        //     let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; box-shadow: 1px 1px 10px 5px rgb(70, 67, 75);">';
-                        //     for (var i = 0; i < d.transactions.length; i++) {
-                        //         res += '<tr><td>Transaction date:</td><td>';
-                        //         res += new Date(d.transactions[i].timestamp);
-                        //         res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
-                        //         res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-                        //         res += '</a></td></tr><tr><td>Token:</td><td>';
-                        //         res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() + '.svg"> ' + d.transactions[i].token;
-                        //         res += '</td></tr>';
-                        //     };
-                        //     res += '</table>';
-                        //     // `d` is the original data object for the row
-                        //     return res;
-                        // }
+                                let index = sacrifices.findIndex(element => {
+                                    if (element.from === item.fromAddress) {
+                                        return true;
+                                    }
+                                });
+                                if (index > -1) {
+                                    sacrifices.at(index).value += item.amount;
+                                    let transaction = {};
+                                    transaction.blockNumber = item.blockNumber;
+                                    transaction.timestamp = item.timestamp;
+                                    transaction.trasactionHash = item.transactionHash;
+                                    transaction.value = item.amount;
+                                    transaction.token = item.token;
+                                    transaction.scansite = item.scansite;
+                                    sacrifices.at(index).transactions.push(transaction);
+                                    // console.log("2 item: "  + JSON.stringify(sacrifices.at(index)));
+
+                                } else {
+                                    let sacrifice = {};
+                                    sacrifice.transactions = [];
+                                    let transaction = {};
+                                    transaction.blockNumber = item.blockNumber;
+                                    transaction.timestamp = item.timestamp;
+                                    transaction.trasactionHash = item.transactionHash;
+                                    transaction.value = item.amount;
+                                    transaction.token = item.token;
+                                    transaction.scansite = item.scansite;
+                                    sacrifice.transactions.push(transaction);
+                                    sacrifice.from = item.fromAddress;
+                                    sacrifice.value = item.amount;
+                                    // console.log("item: "  + JSON.stringify(sacrifice));
+                                    sacrifices.push(sacrifice);
+                                }
+                            });
+                            // console.log("sacrifices: "  + JSON.stringify(sacrifices));
+                            $('#datatable').dataTable().fnAddData(sacrifices);
+                        }
 
                         $(document).ready(function () {
                             var table = $('#datatable').DataTable({
+                                // "ajax": "/data.txt",
                                 ajax: {
                                     url: '/v1/transactions',
                                     type: 'GET',
@@ -323,27 +280,85 @@
                                     error: function (e) {
                                         console.log("There was an error with your request...");
                                         console.log("error: " + JSON.stringify(e));
-                                    },
-                                    cache: false
+                                    }
+                                    // , cache: false
                                 },
                                 select: "single",
                                 "columns": [
-                                    // { "data": "" },
-                                    // { "data": "id" },
-                                    { "data": "fromAddress" },
-                                    // { "data": "blockNumber" },
-                                    { "data": "timestamp" },
-                                    // { "data": "trasactionHash" },
-                                    { "data": "amount", render: $.fn.dataTable.render.number(',', '.', 2, '') },
-                                    { "data": "token" },
-                                    // { "data": "scansite" }
+                                    {
+                                        "className": 'details-control',
+                                        "orderable": false,
+                                        "data": null,
+                                        "defaultContent": '',
+                                        "render": function () {
+                                            return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+                                        },
+                                        width: "15px"
+                                    },
+                                    { "data": "from" },
+                                    { "data": "value", render: $.fn.dataTable.render.number(',', '.', 2, '') }
                                 ],
                                 "pageLength": 25,
                                 "scrollY": 400,
                                 "scrollX": true,
                                 "order": [[2, "desc"]]
                             });
+                            // Add event listener for opening and closing details
+                            $('#datatable tbody').on('click', 'td.details-control', function () {
+                                var tr = $(this).closest('tr');
+                                var tdi = tr.find("i.fa");
+                                var row = table.row(tr);
+                                if (row.child.isShown()) {
+                                    // This row is already open - close it
+                                    row.child.hide();
+                                    tr.removeClass('shown');
+                                    tdi.first().removeClass('fa-minus-square');
+                                    tdi.first().addClass('fa-plus-square');
+                                }
+                                else {
+                                    // Open this row
+                                    row.child(format(row.data())).show();
+                                    tr.addClass('shown');
+                                    tdi.first().removeClass('fa-plus-square');
+                                    tdi.first().addClass('fa-minus-square');
+                                }
+                            });
+                            table.on("user-select", function (e, dt, type, cell, originalEvent) {
+                                if ($(cell.node()).hasClass("details-control")) {
+                                    e.preventDefault();
+                                }
+                            });
+
+                            setInterval(reloadData, 30000); // refresh every 10 mins TODO
                         });
+
+                        function reloadData() {
+                            $(function () {
+                                $.getJSON(
+                                    '/v1/transactions',
+                                    function (json) {
+                                        let nownow = new Date();
+                                        console.log(nownow.toISOString() + ": Refreshing data from database : " + json.data.length + " rows found");
+                                        populateDataTable(json);
+                                    });
+                            });
+                        }
+
+                        function format(d) {
+                            let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; box-shadow: 1px 1px 10px 5px rgb(70, 67, 75);">';
+                            for (var i = 0; i < d.transactions.length; i++) {
+                                res += '<tr><td>Transaction date:</td><td>';
+                                res += new Date(d.transactions[i].timestamp);
+                                res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
+                                res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                                res += '</a></td></tr><tr><td>Token:</td><td>';
+                                res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() + '.svg"> ' + d.transactions[i].token;
+                                res += '</td></tr>';
+                            };
+                            res += '</table>';
+                            
+                            return res;
+                        }
 
                     </script>
         </center>

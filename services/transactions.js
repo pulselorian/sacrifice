@@ -1,14 +1,22 @@
 const db = require('../services/db');
 const config = require('../config');
 
-function getMultiple(page = 1) {
-    const offset = (page - 1) * config.listPerPage;
-    const data = db.query(`SELECT * FROM transactions LIMIT ?,?`, [offset, config.listPerPage]);
+function getMultiple(page = 1, perPage = config.listPerPage) {
+    const offset = (page - 1) * perPage;
+    const data = db.query(`SELECT * FROM transactions LIMIT ?,?`, [offset, perPage]);
     const meta = { page };
 
     return {
         data,
         meta
+    }
+}
+
+function getAll() {
+    const data = db.query(`SELECT * FROM transactions`,[]);
+    
+    return {
+        data
     }
 }
 
@@ -70,5 +78,6 @@ function create(transactionObj) {
 }
 
 module.exports = {
-    getMultiple
+    getMultiple,
+    getAll
 }
