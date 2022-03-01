@@ -329,7 +329,7 @@
                                 }
                             });
 
-                            setInterval(reloadData, 30000); // refresh every 10 mins TODO
+                            setInterval(reloadData, 600000); // refresh every 10 mins
                         });
 
                         function reloadData() {
@@ -338,7 +338,7 @@
                                     '/v1/transactions',
                                     function (json) {
                                         let nownow = new Date();
-                                        console.log(nownow.toISOString() + ": Refreshing data from database : " + json.data.length + " rows found");
+                                        console.log(nownow.toISOString() + ": Refreshing data from db : " + json.data.length + " rows found");
                                         populateDataTable(json);
                                     });
                             });
