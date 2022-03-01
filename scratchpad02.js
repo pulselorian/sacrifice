@@ -21,7 +21,7 @@ var metadata;
 initialize();
 var lastBSCBlock, lastETHBlock;
 setInterval(repeatProcess, FIFTEEN_MINUTES); // incremental update every 15 mins
-setInterval(repeatProcessFull, ONE_DAY); // full update once daily
+// setInterval(repeatProcessFull, ONE_DAY); // full update once daily
 
 async function repeatProcess() {
     console.log(new Date + " executing repeatProcess");
