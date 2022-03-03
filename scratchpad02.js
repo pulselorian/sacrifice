@@ -18,6 +18,7 @@ const ONE_DAY = 24 * 60 * 60 * 1000;
 
 var oneDayProcessing = false;
 var metadata;
+var transactions;
 initialize();
 var lastBSCBlock, lastETHBlock;
 setInterval(repeatProcess, FIFTEEN_MINUTES); // incremental update every 15 mins
@@ -100,11 +101,11 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
                 events.forEach(async function (event) {
                     let block = await web3.eth.getBlock(event.blockNumber);
                     let transaction = {};
-                    transaction.from = event.returnValues.from;
+                    transaction.fromAddress = event.returnValues.from;
                     transaction.blockNumber = event.blockNumber;
                     transaction.timestamp = block.timestamp;
                     transaction.trasactionHash = event.transactionHash;
-                    transaction.value = Number(event.returnValues.value) / meta.decimals;
+                    transaction.amount = Number(event.returnValues.value) / meta.decimals;
                     transaction.token = meta.token;
                     transaction.scansite = meta.scansite;
 
@@ -114,6 +115,9 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
 
                     // console.log("New transaction -> " + JSON.stringify(transaction));
                     sacrificers.push(transaction);
+                    // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
+                    array.push({ fromAddress: `${account.address.toLowerCase()}`, private_key: `${account.privateKey.toLowerCase()}` });
+
                     // console.log(JSON.stringify(transaction));
                 })
             }).catch(err => { console.log(err) });
@@ -140,6 +144,13 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
             toBlock += 5000;
             freeze(211);
         }
+        console.log(new Date + " sacrificers : " + sacrificers.length);
+        // let array = [];
+        // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
+        // array.push({ fromAddress: `${account.address.toLowerCase()}`, private_key: `${account.privateKey.toLowerCase()}` });
+
+        await transactions.bulkCreate(sacrificers).catch((error) => console.error(error));//.then(() => console.log("."));
+
     }
 }
 
@@ -169,6 +180,40 @@ function initialize() {
         }
     }, {
         timestamps: false
+    });
+
+    // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
+    transactions = sequelize.define("transactions", {
+        fromAddress: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        blockNumber: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        timestamp: {
+            type: DataTypes.TIMESTAMP,
+            allowNull: false
+        },
+        trasactionHash: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        amount: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        token: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        scansite: {
+            type: DataTypes.STRING,
+            allowNull: false
+        }
+    }, {
+        timestamps: true
     });
 }
 

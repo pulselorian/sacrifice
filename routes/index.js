@@ -1,24 +1,28 @@
+// TODO
+// PHASE 1
+//  - refresh all data once every 15 mins
+// 
+// PHASE 2
+// 1. update data incrementally every 5 mins
+// 2. update complete data by flushing old data once every mid-night
+
 const express = require('express');
-const router = express.Router({
-    mergeParams: true
-});
+const router = express.Router({ mergeParams: true });
 const Web3 = require("web3");
-const { ethers } = require("ethers");
 const fs = require('file-system');
-const numeral = require('numeral');
 const { Sequelize, DataTypes } = require('sequelize');
 const transactions = require('../services/transactions');
+
 const FIFTEEN_MINUTES = 15 * 60 * 1000; // TODO temporarily set to 1 min for testing
-const ONE_DAY = 24 * 60 * 60 * 1000;
+// const ONE_DAY = 24 * 60 * 60 * 1000;
 
 var oneDayProcessing = false;
 var metadata;
+var transactionsTable;
 initialize();
 var lastBSCBlock, lastETHBlock;
 setInterval(repeatProcess, FIFTEEN_MINUTES); // incremental update every 15 mins
 // setInterval(repeatProcessFull, ONE_DAY); // full update once daily
-
-let sacrificers = [];
 
 async function repeatProcess() {
     console.log(new Date + " executing repeatProcess");
@@ -70,10 +74,11 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
         "type": "event"
     }];
 
+    let sacrificers = [];
+
     metas.forEach(async function (meta) {
         await callBlockChain(meta, bscLBN, ethLBN);
     });
-
 
     async function getETHBN() {
         return await ethweb3.eth.getBlockNumber();
@@ -94,11 +99,11 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
                 events.forEach(async function (event) {
                     let block = await web3.eth.getBlock(event.blockNumber);
                     let transaction = {};
-                    transaction.from = event.returnValues.from;
+                    transaction.fromAddress = event.returnValues.from;
                     transaction.blockNumber = event.blockNumber;
                     transaction.timestamp = block.timestamp;
                     transaction.trasactionHash = event.transactionHash;
-                    transaction.value = Number(event.returnValues.value) / meta.decimals;
+                    transaction.amount = Number(event.returnValues.value) / meta.decimals;
                     transaction.token = meta.token;
                     transaction.scansite = meta.scansite;
 
@@ -106,9 +111,7 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
                         transaction.value = 0;
                     }
 
-                    // console.log("New transaction -> " + JSON.stringify(transaction));
                     sacrificers.push(transaction);
-                    // console.log(JSON.stringify(transaction));
                 })
             }).catch(err => { console.log(err) });
     }
@@ -134,13 +137,21 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
             toBlock += 5000;
             freeze(211);
         }
+        console.log(new Date + " sacrificers : " + sacrificers.length);
+        // let array = [];
+        // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
+        // array.push({ fromAddress: `${account.address.toLowerCase()}`, private_key: `${account.privateKey.toLowerCase()}` });
+
+        await transactionsTable.bulkCreate(sacrificers, { logging: false, ignoreDuplicates: true, }).catch((error) => console.error(error));//.then(() => console.log("."));
+
     }
 }
 
 function initialize() {
     const sequelize = new Sequelize({
         dialect: 'sqlite',
-        storage: 'sacrifice/transactions.db'
+        storage: 'transactions.db',
+        logging: false,
     });
 
     try {
@@ -159,6 +170,44 @@ function initialize() {
         lastETHBlock: {
             // type: Sequelize.INTEGER
             type: DataTypes.INTEGER,
+            allowNull: false
+        }
+    }, {
+        timestamps: false
+    });
+
+    // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
+    transactionsTable = sequelize.define("transactions", {
+        // id: { 
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
+        fromAddress: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        blockNumber: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        timestamp: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        trasactionHash: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        amount: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        token: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        scansite: {
+            type: DataTypes.STRING,
             allowNull: false
         }
     }, {
@@ -205,7 +254,7 @@ function freeze(time) {
 
 router.get('/', (req, res) => {
     var data = transactions.getAll();
-    res.render('home', {data: data});
+    res.render('home', { data: data });
 });
 
 router.get('/api', (req, res) => {
