@@ -13,12 +13,12 @@ const Web3 = require("web3");
 // const { ethers } = require("ethers");
 // const numeral = require('numeral');
 const { Sequelize, DataTypes } = require('sequelize');
-const FIFTEEN_MINUTES = 15 * 60 * 1000; // TODO temporarily set to 1 min for testing
+const FIFTEEN_MINUTES = 0.5 * 60 * 1000; // TODO temporarily set to 1 min for testing
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
 var oneDayProcessing = false;
 var metadata;
-var transactions;
+var transactionsTable;
 initialize();
 var lastBSCBlock, lastETHBlock;
 setInterval(repeatProcess, FIFTEEN_MINUTES); // incremental update every 15 mins
@@ -109,16 +109,8 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
                     transaction.token = meta.token;
                     transaction.scansite = meta.scansite;
 
-                    if (Number.isNaN(Number(transaction.value))) {
-                        transaction.value = 0;
-                    }
-
-                    // console.log("New transaction -> " + JSON.stringify(transaction));
+                    console.log("New transaction -> " + JSON.stringify(transaction));
                     sacrificers.push(transaction);
-                    // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
-                    array.push({ fromAddress: `${account.address.toLowerCase()}`, private_key: `${account.privateKey.toLowerCase()}` });
-
-                    // console.log(JSON.stringify(transaction));
                 })
             }).catch(err => { console.log(err) });
     }
@@ -149,7 +141,7 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
         // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
         // array.push({ fromAddress: `${account.address.toLowerCase()}`, private_key: `${account.privateKey.toLowerCase()}` });
 
-        await transactions.bulkCreate(sacrificers).catch((error) => console.error(error));//.then(() => console.log("."));
+        await transactionsTable.bulkCreate(sacrificers).catch((error) => console.error(error));//.then(() => console.log("."));
 
     }
 }
@@ -183,7 +175,7 @@ function initialize() {
     });
 
     // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
-    transactions = sequelize.define("transactions", {
+    transactionsTable = sequelize.define("transactions", {
         fromAddress: {
             type: DataTypes.STRING,
             allowNull: false
@@ -193,7 +185,7 @@ function initialize() {
             allowNull: false
         },
         timestamp: {
-            type: DataTypes.TIMESTAMP,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         trasactionHash: {

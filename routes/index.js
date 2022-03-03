@@ -47,7 +47,7 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
     const bscLBN = await getBSCBN();
     const ethLBN = await getETHBN();
 
-    console.log(new Date + " About to update in db (" + bscLBN + ", " + ethLBN + ")");
+    console.log(new Date + " About to update into db (" + bscLBN + ", " + ethLBN + ")");
     updateBSCMetadata(metadata, bscLBN - 1);
     updateETHMetadata(metadata, ethLBN - 1);
 
@@ -69,7 +69,8 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
         "inputs": [
             { "indexed": true, "name": "from", "type": "address" },
             { "indexed": true, "name": "to", "type": "address" },
-            { "indexed": false, "name": "value", "type": "uint256" }],
+            { "indexed": false, "name": "value", "type": "uint256" }
+        ],
         "name": "Transfer",
         "type": "event"
     }];
@@ -102,14 +103,10 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
                     transaction.fromAddress = event.returnValues.from;
                     transaction.blockNumber = event.blockNumber;
                     transaction.timestamp = block.timestamp;
-                    transaction.trasactionHash = event.transactionHash;
+                    transaction.transactionHash = event.transactionHash;
                     transaction.amount = Number(event.returnValues.value) / meta.decimals;
                     transaction.token = meta.token;
                     transaction.scansite = meta.scansite;
-
-                    if (Number.isNaN(Number(transaction.value))) {
-                        transaction.value = 0;
-                    }
 
                     sacrificers.push(transaction);
                 })
@@ -118,7 +115,7 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
 
     async function callBlockChain(meta) {
         let fromBlock = meta.startBlock;
-        let toBlock = fromBlock + 4999;
+        let toBlock = fromBlock + 5000;
 
         var myContractInstance;
         var web3;
@@ -138,12 +135,8 @@ async function repeatProcessMain(lastBSCBlock, lastETHBlock) {
             freeze(211);
         }
         console.log(new Date + " sacrificers : " + sacrificers.length);
-        // let array = [];
-        // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
-        // array.push({ fromAddress: `${account.address.toLowerCase()}`, private_key: `${account.privateKey.toLowerCase()}` });
 
-        await transactionsTable.bulkCreate(sacrificers, { logging: false, ignoreDuplicates: true, }).catch((error) => console.error(error));//.then(() => console.log("."));
-
+        await transactionsTable.bulkCreate(sacrificers, { logging: false, ignoreDuplicates: true, }).catch((error) => console.error(error));
     }
 }
 
@@ -162,73 +155,31 @@ function initialize() {
     }
 
     metadata = sequelize.define("metadata", {
-        lastBSCBlock: {
-            // type: Sequelize.INTEGER
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        lastETHBlock: {
-            // type: Sequelize.INTEGER
-            type: DataTypes.INTEGER,
-            allowNull: false
-        }
-    }, {
-        timestamps: false
-    });
+        lastBSCBlock: { type: DataTypes.INTEGER, allowNull: false },
+        lastETHBlock: { type: DataTypes.INTEGER, allowNull: false }
+    }, { timestamps: false });
 
-    // fromAddress, blockNumber, timestamp, trasactionHash, amount, token, scansite
     transactionsTable = sequelize.define("transactions", {
-        // id: { 
-        //     type: DataTypes.STRING,
-        //     allowNull: false
-        // },
-        fromAddress: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        blockNumber: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        timestamp: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        trasactionHash: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        amount: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        token: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        scansite: {
-            type: DataTypes.STRING,
-            allowNull: false
-        }
-    }, {
-        timestamps: false
-    });
+        fromAddress: { type: DataTypes.STRING, allowNull: false },
+        blockNumber: { type: DataTypes.INTEGER, allowNull: false },
+        timestamp: { type: DataTypes.INTEGER, allowNull: false },
+        transactionHash: { type: DataTypes.STRING, allowNull: false },
+        amount: { type: DataTypes.INTEGER, allowNull: false },
+        token: { type: DataTypes.STRING, allowNull: false },
+        scansite: { type: DataTypes.STRING, allowNull: false }
+    }, { timestamps: false });
 }
 
 async function queryMeta() {
-    // metadata.findAll({ attributes: ['lastBSCBlock', 'lastETHBlock'] });
     let lastBSCBlock = 15385000;
     let lastETHBlock = 14230000;
-    metadata.findAll({
+    await metadata.findAll({
         attributes: { exclude: ['id'] },
         where: { id: 1 }
     }).then(function (rows) {
-        // rows.forEach(function (row) { console.log("--> " + JSON.stringify(row)); });
         lastBSCBlock = rows.at(0).get('lastBSCBlock');
         lastETHBlock = rows.at(0).get('lastETHBlock');
-        console.log("lastBSCBlock ", lastBSCBlock, " lastETHBlock ", lastETHBlock);
-        // console.log(b);
-
+        console.log("Metadata query complete - lastBSCBlock ", lastBSCBlock, " lastETHBlock ", lastETHBlock);
     }).catch(function (error) {
         console.error(error);
     });

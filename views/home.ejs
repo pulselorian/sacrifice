@@ -8,148 +8,179 @@
                 <p style="padding: 10px; color: rgb(228, 201, 253);">COMING SOON on <img style="width: 20px"" src="
                         /uploads/bnb.png"> BSC - 1:1 Airdrop on the PulseChain Network.</p>
             </a>
-            <% 
-            let totalSacrificed = data.data.map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+            <% let totalSacrificed=data.data.map(item=> item.amount).reduce((prev, curr) => prev + curr, 0);
 
-            let ttDAI = data.data.filter(items => items.token === 'DAI').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttUSDC = data.data.filter(items => items.token === 'USDC').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttUSDT = data.data.filter(items => items.token === 'USDT').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttTUSD = data.data.filter(items => items.token === 'TUSD').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttBUSD = data.data.filter(items => items.token === 'BUSD').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttDAI = data.data.filter(items => items.token === 'DAI').map(item => item.amount).reduce((prev,
+                curr) => prev + curr, 0);
+                let ttUSDC = data.data.filter(items => items.token === 'USDC').map(item => item.amount).reduce((prev,
+                curr) => prev + curr, 0);
+                let ttUSDT = data.data.filter(items => items.token === 'USDT').map(item => item.amount).reduce((prev,
+                curr) => prev + curr, 0);
+                let ttTUSD = data.data.filter(items => items.token === 'TUSD').map(item => item.amount).reduce((prev,
+                curr) => prev + curr, 0);
+                let ttBUSD = data.data.filter(items => items.token === 'BUSD').map(item => item.amount).reduce((prev,
+                curr) => prev + curr, 0);
 
-            let ttLockup1 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.01').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup2 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.02').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup3 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.03').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup4 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.04').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup5 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.05').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup6 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.06').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup7 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.07').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup8 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.08').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup9 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.09').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup10 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.10').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup11 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.11').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup12 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.12').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup13 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.13').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup14 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.14').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup15 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.15').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup16 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.16').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup17 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.17').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup18 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.18').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup19 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.19').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup20 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.20').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
-            let ttLockup21 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.21').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup22 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.22').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup23 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.23').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-            let ttLockup24 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) === '0.24').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
-        
-            let notLocked = totalSacrificed - (ttLockup1 + ttLockup2 + ttLockup3 + ttLockup4 + ttLockup5 + ttLockup6 +
-                            ttLockup7 + ttLockup8+ ttLockup9 + ttLockup10 + ttLockup11 + ttLockup12 +
-                            ttLockup13 + ttLockup14 + ttLockup15 + ttLockup16 + ttLockup17 + ttLockup18 +
-                            ttLockup19 + ttLockup20 + ttLockup21 + ttLockup22 + ttLockup23 + ttLockup24);
-        %>
-                    <div class="dataTableContainer">
-                        <h3>The Sacrifice Lead</h3>
-                        <p><img style="width: 100px"" src=" /uploads/liquid.png"></p>
-                        <h4 style="color: rgb(228, 201, 253);">Total Sacrificed $ <%=
-                                numeral(totalSacrificed).format('0,000.00') %>
-                        </h4>
-                    </div>
-                    <br />
-                    <div class="dataTableContainer">
-                        <div class="gridWrap">
-                            <div class="gridCol">
-                                <h4 style="color: rgb(228, 201, 253);">Total $ by Token</h4>
-                                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdc.svg"> $ <%=
-                                        numeral(ttUSDC).format('0,000.00') %>
-                                </p>
-                                <p><img style="width: 20px;" src="/uploads/SVG-icons/dai.svg"> $ <%=
-                                        numeral(ttDAI).format('0,000.00') %>
-                                </p>
-                                <p><img style="width: 20px;" src="/uploads/SVG-icons/usdt.svg"> $ <%=
-                                        numeral(ttUSDT).format('0,000.00') %>
-                                </p>
-                                <p><img style="width: 20px;" src="/uploads/SVG-icons/busd.svg"> $ <%=
-                                        numeral(ttBUSD).format('0,000.00') %>
-                                </p>
-                                <p><img style="width: 20px;" src="/uploads/SVG-icons/tusd.svg"> $ <%=
-                                        numeral(ttTUSD).format('0,000.00') %>
-                                </p>
-                            </div>
-                            <div class="gridCol" style="width: 250px;">
-                                <canvas id="pie-chart"></canvas>
-                            </div>
+                let ttLockup1 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.01').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup2 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.02').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup3 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.03').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup4 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.04').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup5 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.05').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup6 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.06').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup7 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.07').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup8 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.08').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup9 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.09').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup10 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.10').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup11 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.11').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup12 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.12').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup13 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.13').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup14 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.14').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup15 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.15').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup16 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.16').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup17 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.17').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup18 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.18').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup19 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.19').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup20 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.20').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);;
+                let ttLockup21 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.21').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup22 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.22').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup23 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.23').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+                let ttLockup24 = data.data.filter(items => (items.amount - Math.floor(items.amount)).toFixed(2) ===
+                '0.24').map(item => item.amount).reduce((prev, curr) => prev + curr, 0);
+
+                let notLocked = totalSacrificed - (ttLockup1 + ttLockup2 + ttLockup3 + ttLockup4 + ttLockup5 + ttLockup6
+                +
+                ttLockup7 + ttLockup8+ ttLockup9 + ttLockup10 + ttLockup11 + ttLockup12 +
+                ttLockup13 + ttLockup14 + ttLockup15 + ttLockup16 + ttLockup17 + ttLockup18 +
+                ttLockup19 + ttLockup20 + ttLockup21 + ttLockup22 + ttLockup23 + ttLockup24);
+                %>
+                <div class="dataTableContainer">
+                    <h3>The Sacrifice Lead</h3>
+                    <p><img style="width: 100px"" src=" /uploads/liquid.png"></p>
+                    <h4 style="color: rgb(228, 201, 253);">Total Sacrificed $ <%=
+                            numeral(totalSacrificed).format('0,000.00') %>
+                    </h4>
+                </div>
+                <br />
+                <div class="dataTableContainer">
+                    <div class="gridWrap">
+                        <div class="gridCol">
+                            <h4 style="color: rgb(228, 201, 253);">Total $ by Token</h4>
+                            <p><img style="width: 20px;" src="/uploads/SVG-icons/usdc.svg"> $ <%=
+                                    numeral(ttUSDC).format('0,000.00') %>
+                            </p>
+                            <p><img style="width: 20px;" src="/uploads/SVG-icons/dai.svg"> $ <%=
+                                    numeral(ttDAI).format('0,000.00') %>
+                            </p>
+                            <p><img style="width: 20px;" src="/uploads/SVG-icons/usdt.svg"> $ <%=
+                                    numeral(ttUSDT).format('0,000.00') %>
+                            </p>
+                            <p><img style="width: 20px;" src="/uploads/SVG-icons/busd.svg"> $ <%=
+                                    numeral(ttBUSD).format('0,000.00') %>
+                            </p>
+                            <p><img style="width: 20px;" src="/uploads/SVG-icons/tusd.svg"> $ <%=
+                                    numeral(ttTUSD).format('0,000.00') %>
+                            </p>
+                        </div>
+                        <div class="gridCol" style="width: 250px;">
+                            <canvas id="pie-chart"></canvas>
                         </div>
                     </div>
-                    <br />
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                </div>
+                <br />
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                    <script>
-                        new Chart(document.getElementById("pie-chart"), {
-                            type: 'pie',
-                            data: {
-                                labels: ["DAI", "USDC", "USDT", "BUSD", "TUSD"],
-                                datasets: [{
-                                    label: "Sacrifice Breakdown by Tokens",
-                                    backgroundColor: ["#d9d325", "#2f6deb", "#1b691e", "#d9a625", "#230c7d"],
-                                    data: [<%=ttDAI %>,<%=ttUSDC %>,<%=ttUSDT %>,<%=ttBUSD %>,<%=ttTUSD %>],
-                                    borderColor: "ffffff",
-                                    borderWidth: 1,
-                                }]
+                <script>
+                    new Chart(document.getElementById("pie-chart"), {
+                        type: 'pie',
+                        data: {
+                            labels: ["DAI", "USDC", "USDT", "BUSD", "TUSD"],
+                            datasets: [{
+                                label: "Sacrifice Breakdown by Tokens",
+                                backgroundColor: ["#d9d325", "#2f6deb", "#1b691e", "#d9a625", "#230c7d"],
+                                data: [<%=ttDAI %>,<%=ttUSDC %>,<%=ttUSDT %>,<%=ttBUSD %>,<%=ttTUSD %>],
+                                borderColor: "ffffff",
+                                borderWidth: 1,
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: true,
+                                text: 'Sacrifice breakdown'
                             },
-                            options: {
-                                title: {
-                                    display: true,
-                                    text: 'Sacrifice breakdown'
-                                },
-                                legend: {
-                                    position: 'bottom'
-                                }
+                            legend: {
+                                position: 'bottom'
                             }
-                        });
-                    </script>
-                    <div class="dataTableContainer">
-                        <table id="datatable" class="display compact table table-hover table-dark table-responsive"
-                            style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>from</th>
-                                    <th>amount</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th>from</th>
-                                    <th>amount</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <br />
+                        }
+                    });
+                </script>
+                <div class="dataTableContainer">
+                    <table id="datatable" class="display compact table table-hover table-dark table-responsive"
+                        style="width:100%">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>from</th>
+                                <th>amount</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>from</th>
+                                <th>amount</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <br />
 
-                    <div>
-                        <h4 style="color: rgb(228, 201, 253);">Total NOT Locked</h4>
-                        <h4><%= numeral(notLocked).format('0,000.00') %></h4>
-                    </div>
+                <div>
+                    <h4 style="color: rgb(228, 201, 253);">Total NOT Locked</h4>
+                    <h4>
+                        <%= numeral(notLocked).format('0,000.00') %>
+                    </h4>
+                </div>
 
-                    <br />
-                    <div class="dataTableContainer">
-                        <canvas id="bar-chart"></canvas>
-                    </div>
-                    <script>
-                        new Chart(document.getElementById("bar-chart"), {
-                            type: 'bar',
-                            data: {
-                                labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
-                                datasets: [
-                                    {
-                                        label: "Total Sacrifice by Lockup Period",
-                                        backgroundColor: "#ddc7ff",
-                                        color: '#ffffff',
-                                        borderColor: "#6400ff",
-                                        borderWidth: 2,
-                                        data: [<%= ttLockup1 %>,
+                <br />
+                <div class="dataTableContainer">
+                    <canvas id="bar-chart"></canvas>
+                </div>
+                <script>
+                    new Chart(document.getElementById("bar-chart"), {
+                        type: 'bar',
+                        data: {
+                            labels: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
+                            datasets: [
+                                {
+                                    label: "Total Sacrifice by Lockup Period",
+                                    backgroundColor: "#ddc7ff",
+                                    color: '#ffffff',
+                                    borderColor: "#6400ff",
+                                    borderWidth: 2,
+                                    data: [<%= ttLockup1 %>,
                                                <%= ttLockup2 %>,
                            <%= ttLockup3 %>,
                            <%= ttLockup4 %>,
@@ -174,182 +205,176 @@
                            <%= ttLockup23 %>,
                            <%= ttLockup24 %>
                            ]
-                                    }
-                                ]
+                                }
+                            ]
+                        },
+                        options: {
+                            legend: { display: true },
+                            indexAxis: 'y',
+                            title: {
+                                display: true,
+                                text: 'Lockup Period'
                             },
-                            options: {
-                                legend: { display: true },
-                                indexAxis: 'y',
-                                title: {
-                                    display: true,
-                                    text: 'Lockup Period'
-                                },
-                                plugins: {
-                                    legends: {
-                                        labels: {
-                                            color: '#ffffff'
-                                        }
+                            plugins: {
+                                legends: {
+                                    labels: {
+                                        color: '#ffffff'
                                     }
                                 }
                             }
-                        });
-                    </script>
-
-                    <p style="padding: 20px;">Access our <a href="/api">API</a></p>
-                    <script>
-
-                        function copyToClipboard(id) {
-                            var r = document.createRange();
-                            r.selectNode(document.getElementById(id));
-                            window.getSelection().removeAllRanges();
-                            window.getSelection().addRange(r);
-                            document.execCommand('copy');
-                            window.getSelection().removeAllRanges();
                         }
+                    });
+                </script>
 
-                        function populateDataTable(data) {
-                            let sacrifices = [];
-                            $("#datatable").DataTable().clear();
-                            var row = 0;
-                            // console.log("data: "  + JSON.stringify(data));
-                            // $('#datatable').dataTable().fnAddData(data.data);
-                            $.each(data.data, function (indexI, item) {
-                                item.timestamp = new Date(item.timestamp);
-                                // console.log("item: "  + JSON.stringify(item));
+                <p style="padding: 20px;">Access our <a href="/api">API</a></p>
+                <script>
 
-                                let index = sacrifices.findIndex(element => {
-                                    if (element.from === item.fromAddress) {
-                                        return true;
-                                    }
-                                });
-                                if (index > -1) {
-                                    sacrifices.at(index).value += item.amount;
-                                    let transaction = {};
-                                    transaction.blockNumber = item.blockNumber;
-                                    transaction.timestamp = item.timestamp;
-                                    transaction.trasactionHash = item.transactionHash;
-                                    transaction.value = item.amount;
-                                    transaction.token = item.token;
-                                    transaction.scansite = item.scansite;
-                                    sacrifices.at(index).transactions.push(transaction);
-                                    // console.log("2 item: "  + JSON.stringify(sacrifices.at(index)));
+                    function copyToClipboard(id) {
+                        var r = document.createRange();
+                        r.selectNode(document.getElementById(id));
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(r);
+                        document.execCommand('copy');
+                        window.getSelection().removeAllRanges();
+                    }
 
-                                } else {
-                                    let sacrifice = {};
-                                    sacrifice.transactions = [];
-                                    let transaction = {};
-                                    transaction.blockNumber = item.blockNumber;
-                                    transaction.timestamp = item.timestamp;
-                                    transaction.trasactionHash = item.transactionHash;
-                                    transaction.value = item.amount;
-                                    transaction.token = item.token;
-                                    transaction.scansite = item.scansite;
-                                    sacrifice.transactions.push(transaction);
-                                    sacrifice.from = item.fromAddress;
-                                    sacrifice.value = item.amount;
-                                    // console.log("item: "  + JSON.stringify(sacrifice));
-                                    sacrifices.push(sacrifice);
+                    function populateDataTable(data) {
+                        let sacrifices = [];
+                        $("#datatable").DataTable().clear();
+                        var row = 0;
+
+                        $.each(data.data, function (indexI, item) {
+                            // console.log(" --- item: " + JSON.stringify(item));
+                            item.timestamp = new Date(item.timestamp);
+
+                            let index = sacrifices.findIndex(element => {
+                                if (element.from === item.fromAddress) {
+                                    return true;
                                 }
                             });
-                            // console.log("sacrifices: "  + JSON.stringify(sacrifices));
-                            $('#datatable').dataTable().fnAddData(sacrifices);
-                        }
+                            if (index > -1) {
+                                let transaction = {};
+                                transaction.blockNumber = item.blockNumber;
+                                transaction.timestamp = item.timestamp;
+                                transaction.trasactionHash = item.transactionHash;
+                                transaction.value = item.amount;
+                                transaction.token = item.token;
+                                transaction.scansite = item.scansite;
 
-                        $(document).ready(function () {
-                            var table = $('#datatable').DataTable({
-                                // "ajax": "/data.txt",
-                                ajax: {
-                                    url: '/v1/transactions',
-                                    type: 'GET',
-                                    contentType: 'application/json',
-                                    success: function (data) {
-                                        // alert('Done!');
-                                        populateDataTable(data);
+                                sacrifices.at(index).transactions.push(transaction);
+                                sacrifices.at(index).value += item.amount;
+                                // console.log("2 item: "  + JSON.stringify(sacrifices.at(index)));
+                            } else {
+                                let transaction = {};
+                                transaction.blockNumber = item.blockNumber;
+                                transaction.timestamp = item.timestamp;
+                                transaction.trasactionHash = item.transactionHash;
+                                transaction.value = item.amount;
+                                transaction.token = item.token;
+                                transaction.scansite = item.scansite;
+
+                                let sacrifice = {};
+                                sacrifice.transactions = [];
+                                sacrifice.transactions.push(transaction);
+                                sacrifice.from = item.fromAddress;
+                                sacrifice.value = item.amount;
+                                // console.log("item: "  + JSON.stringify(sacrifice));
+                                sacrifices.push(sacrifice);
+                            }
+                        });
+
+                        $('#datatable').dataTable().fnAddData(sacrifices);
+                    }
+
+                    $(document).ready(function () {
+                        var table = $('#datatable').DataTable({
+                            ajax: {
+                                url: '/v1/transactions',
+                                type: 'GET',
+                                contentType: 'application/json',
+                                success: function (data) { populateDataTable(data); },
+                                error: function (e) {
+                                    console.log("There was an error with your request...");
+                                    console.log("error: " + JSON.stringify(e));
+                                }
+                                // , cache: false
+                            },
+                            select: "single",
+                            "columns": [
+                                {
+                                    "className": 'details-control',
+                                    "orderable": false,
+                                    "data": null,
+                                    "defaultContent": '',
+                                    "render": function () {
+                                        return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
                                     },
-                                    error: function (e) {
-                                        console.log("There was an error with your request...");
-                                        console.log("error: " + JSON.stringify(e));
-                                    }
-                                    // , cache: false
+                                    width: "15px"
                                 },
-                                select: "single",
-                                "columns": [
-                                    {
-                                        "className": 'details-control',
-                                        "orderable": false,
-                                        "data": null,
-                                        "defaultContent": '',
-                                        "render": function () {
-                                            return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
-                                        },
-                                        width: "15px"
-                                    },
-                                    { "data": "from" },
-                                    { "data": "value", render: $.fn.dataTable.render.number(',', '.', 2, '') }
-                                ],
-                                "pageLength": 25,
-                                "scrollY": 400,
-                                "scrollX": true,
-                                "order": [[2, "desc"]]
-                            });
-                            // Add event listener for opening and closing details
-                            $('#datatable tbody').on('click', 'td.details-control', function () {
-                                var tr = $(this).closest('tr');
-                                var tdi = tr.find("i.fa");
-                                var row = table.row(tr);
-                                if (row.child.isShown()) {
-                                    // This row is already open - close it
-                                    row.child.hide();
-                                    tr.removeClass('shown');
-                                    tdi.first().removeClass('fa-minus-square');
-                                    tdi.first().addClass('fa-plus-square');
-                                }
-                                else {
-                                    // Open this row
-                                    row.child(format(row.data())).show();
-                                    tr.addClass('shown');
-                                    tdi.first().removeClass('fa-plus-square');
-                                    tdi.first().addClass('fa-minus-square');
-                                }
-                            });
-                            table.on("user-select", function (e, dt, type, cell, originalEvent) {
-                                if ($(cell.node()).hasClass("details-control")) {
-                                    e.preventDefault();
-                                }
-                            });
-
-                            setInterval(reloadData, 600000); // refresh every 10 mins
+                                { "data": "from" },
+                                { "data": "value", render: $.fn.dataTable.render.number(',', '.', 2, '') }
+                            ],
+                            "pageLength": 25,
+                            "scrollY": 400,
+                            "scrollX": true,
+                            "order": [[2, "desc"]]
+                        });
+                        // Add event listener for opening and closing details
+                        $('#datatable tbody').on('click', 'td.details-control', function () {
+                            var tr = $(this).closest('tr');
+                            var tdi = tr.find("i.fa");
+                            var row = table.row(tr);
+                            if (row.child.isShown()) {
+                                // This row is already open - close it
+                                row.child.hide();
+                                tr.removeClass('shown');
+                                tdi.first().removeClass('fa-minus-square');
+                                tdi.first().addClass('fa-plus-square');
+                            }
+                            else {
+                                // Open this row
+                                // alert(" --> " + JSON.stringify(row.data()));
+                                row.child(format(row.data())).show();
+                                tr.addClass('shown');
+                                tdi.first().removeClass('fa-plus-square');
+                                tdi.first().addClass('fa-minus-square');
+                            }
+                        });
+                        table.on("user-select", function (e, dt, type, cell, originalEvent) {
+                            if ($(cell.node()).hasClass("details-control")) { e.preventDefault(); }
                         });
 
-                        function reloadData() {
-                            $(function () {
-                                $.getJSON(
-                                    '/v1/transactions',
-                                    function (json) {
-                                        let nownow = new Date();
-                                        console.log(nownow.toISOString() + ": Refreshing data from db : " + json.data.length + " rows found");
-                                        populateDataTable(json);
-                                    });
-                            });
-                        }
+                        setInterval(reloadData, 600000); // refresh every 10 mins
+                    });
 
-                        function format(d) {
-                            let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; box-shadow: 1px 1px 10px 5px rgb(70, 67, 75);">';
-                            for (var i = 0; i < d.transactions.length; i++) {
-                                res += '<tr><td>Transaction date:</td><td>';
-                                res += new Date(d.transactions[i].timestamp);
-                                res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
-                                res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-                                res += '</a></td></tr><tr><td>Token:</td><td>';
-                                res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() + '.svg"> ' + d.transactions[i].token;
-                                res += '</td></tr>';
-                            };
-                            res += '</table>';
-                            
-                            return res;
-                        }
+                    function reloadData() {
+                        $(function () {
+                            $.getJSON('/v1/transactions',
+                                function (json) {
+                                    let nownow = new Date();
+                                    console.log(nownow.toISOString() + ": Refreshing data from db : " + json.data.length + " rows found");
+                                    populateDataTable(json);
+                                });
+                        });
+                    }
 
-                    </script>
+                    function format(d) {
+                        let res = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; box-shadow: 1px 1px 10px 5px rgb(70, 67, 75);">';
+                        for (var i = 0; i < d.transactions.length; i++) {
+                            res += '<tr><td>Transaction date:</td><td>';
+                            res += new Date(d.transactions[i].timestamp);
+                            res += '</td></tr><tr><td>Amount:</td><td> <a href= "https://' + d.transactions[i].scansite + '.com/tx/' + d.transactions[i].trasactionHash + '" target = "_blank" >';
+                            res += d.transactions[i].value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                            res += '</a></td></tr><tr><td>Token:</td><td>';
+                            res += '<img width="16px"; src="/uploads/SVG-icons/' + d.transactions[i].token.toLowerCase() + '.svg"> ' + d.transactions[i].token;
+                            res += '</td></tr>';
+                        };
+                        res += '</table>';
+
+                        return res;
+                    }
+
+                </script>
         </center>
     </main>
     <%- include('../views/partials/footer'); %>
